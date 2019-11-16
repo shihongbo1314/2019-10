@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <input type="text" placeholder="身份证" id="inp">
+        <button id="btn">解析</button>
+        <h2 id="box">这个人的出生年月日时1998年03月09日 性别是男</h2>
+</body>
+</html>
+<script>
+     var reg = /\d{6}\d{4}\d{2}\d{2}\d{2}\d|(\d|x)/;
+     btn.onclick = function(){
+         let str = inp.value
+         let reg = /^\d{6}(\d{4})(\d{2})(\d{2})\d{2}(\d)(\d|x)$/;
+         let res = reg.exec(str);//若输入的身份证不合法;则res是一个null;
+         if(res){
+            // res 的第一项是 大正则捕获的内容 ; 第二项 第一个小正则 年的正则
+            box.innerHTML = `这个人的出生年月日是${res[1]}年${res[2]}月${res[3]}日 性别是${res[4]%2 ? '男' :' 女'}`
+         }else{
+             alert('身份证不合法')
+         }
+     }
+
+     Object.prototype.getType = function(){
+          let str = ({}).toString.call(this);// '[Object NUmber]'
+          let reg = /[a-z]/ig;
+          reg.test(str);
+          return reg.exec(str)[0].toLowerCase();
+     }
+     ''.getType();
+     [].getType();
+</script>

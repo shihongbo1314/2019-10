@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // 获取字符串中出现次数最多的字符
+    var str = 'sfnjkdshdshdfbsfsfdgdsfddsf';
+    function getMax(str) {
+        let obj = {};
+        for (let i = 0; i < str.length; i++) {
+            //把字符串中的每一项当作属性名存储起来;
+            //存储之前 先看 对象中有没有这个属性,没有的话 我们就给obj
+            //增加一个对应的属性  属性值是 1; 有的话 就是他现在值的基础上 加1
+            let t = str[i]
+            if (obj.hasOwnProperty(t)) {
+                obj[t] += 1
+            } else {
+                obj[t] = 1
+            }
+        }
+        console.log(Object.values(obj))//取得属性值
+        console.log(Object.keys(obj))//取得属性名
+        var val = Object.values(obj);
+        var key = Object.keys(obj);
+        var m = Math.max(...val);
+        var n = key[val.indexOf(m)]
+
+        // let key = '',num = 0;
+        // for (var k in obj) {
+        //     if (obj[k] > num) {
+        //         key = k;
+        //         num = obj[k]
+        //     }
+        // }
+        return {
+            key, num 
+        }
+
+    }
+    getMax(str);
+
+
+
+    var reg = /(\d+?)\1+/;// \1代表第一个小分组匹配的内容 \2 代表第二个小分组匹配的内容
+    var str = '123123123123123123';
+    console.log(reg.exec(str))
+
+    var reg = /(\d)\1+/g;// \1代表第一个小分组匹配的内容 \2 代表第二个小分组匹配的内容
+    var str = '23123';
+    console.log(reg.exec(str))
+    console.log(reg.exec(str))
+
+    var reg = /([a-z]+)(\d+)\2\1///分组引用
+    var str = 'zf20192019zf';
+    console.log(reg.exec(str),666)
+
+    var str = 'djjfdsjgdsgjkgjfndjgandsfksfdlkd';
+    function getMax2(str){
+     var obj = {}
+     str = str.split('').sort((a,b)=>a.localeCompare(b)).join('');
+     console.log(str)
+     
+
+
+// 使用replace
+     let key = '',num = 0;
+        str.replace(/(\w)\1*/g,function($0,$1){
+            if($0.length>num){
+                num = $0.length;
+                key = $1;
+            }
+            return{
+                key,num
+            }
+        })
+    }
+     
+    
+</script>

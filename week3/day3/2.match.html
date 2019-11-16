@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+     
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var reg = /([a-z])(\d+)/
+    var str = 'zf2019zf2020';
+    console.log(reg.exec(str));
+    console.log(str.match(reg));
+    var reg = /([a-z]+)(\d+)/g
+    var str = 'zf2019zf2020';
+    console.log(reg.exec(str));
+    console.log(str.match(reg));
+    // match 和exec的区别  在不加全局修饰符g的时候,两者功能一摸一样,加上g之后,match可以把所有大正则匹配的内容都捕获到,但是会丢掉 小分组的捕获
+
+    var str = '55043219980818243X';
+    var reg = /\d{6}\d{4}\d{2}\d{2}\d{2}\d|(\d|X)/;
+    console.log(reg.exec(str));
+    console.log(str.match(reg));
+    
+    var str = 'http://www.zhufengpeixun.cn/?lx=1&from=wx&b=12&c=13';
+    function getParam(url){
+        let obj = {};
+        var reg =/([^?=&]+)=([^?=&#]+)/g;
+        url.match(reg).forEach(item=> {
+            let a = item.split('=');//['lx,'1]
+            obj[a[0]] = a[1]
+        })
+        return obj
+        
+    }
+    getParam(str);
+   
+
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // svn   git  版本管理器
+    // svn 属于集中的管理  所有的版本都在中央服务器上存储
+    // git 属于分布式管理  每一个电脑都有所有的对应版本
+
+    // git的相关命令
+    // git 把仓库分成了三个区  工作区  暂存区(缓存区)  历史区
+    // 平时的编写代码都是再 工作区进行的；
+
+    // git init  把一个文件夹 初始化成 一个 git  仓库
+    // git status  是查看当前的仓库状态   (工作区)
+    //             红色代表当前工作区的修改 
+    //             绿色代表工作的修改已经被提交到了缓存区
+    // git add  文件名  一般都写成了 git add .  这个点代表所有的文件     这个命令代表把所有工作去的修改都提交到了暂存区 
+    // git commit -m  '备注'       把 缓存区  的内容提交到  历史区；
+
+    //git 工具的三个远程服务器     gitHub  gitLab  码云: 工作中 基本都是gitLab
+
+    // git push    把本机的历史区代码提交到远程仓库
+    // 初次提交时 需要执行  git push --set-upstream origin master
+    // 把本地仓库和远程仓库建立链接   git remote add 桥梁名 远程仓库地址=======》桥梁名 一般默认 origin
+
+    // git  config --list  查看本机的git信息
+
+    // git config --global user.name 用户名             初始化本机的git 用户名
+    // git config --global user.email 用户邮箱          初始化本机的git 邮箱
+
+    // git add  .                  把工作区的内容提交到缓存区
+    // git commit -m '备注'        把缓存区的内容提交到历史区
+    // git push                    把历史区的内容提及到远程仓库
+
+    // git  clone  别人的仓库地址    把别人的仓库复制(克隆)一份到自己的电脑
+    // git pull                     把远程仓库的内容更新到本地
+</script>

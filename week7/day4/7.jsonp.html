@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<!-- <script>
+    function qqq(data) {
+        console.log(data)
+    }
+    // cb后边的内容就是回调函数，在前边声明该函数，就能接收cb传回来的数据
+</script>
+<script
+    src="https://nex.163.com/q?app=7BE0FC82&c=homepage&l=33&site=netease&affiliate=homepage&cat=homepage&type=logo300x250&location=1&cb=qqq">
+</script> -->
+
+<script>
+    function jsonp(url, callback) {
+        let script = document.createElement('script');
+        let str = 'my' + Date.now();
+        window[str] = function (data) {
+            callback && callback(data);
+            document.body.removeChild(script);
+            delete window[str];
+        }
+        script.src = url += '&cb=' + str;
+        document.body.appendChild(script);
+    }
+
+    jsonp('https://nex.163.com/q?app=7BE0FC82&c=homepage&l=33&site=netease&affiliate=homepage&cat=homepage&type=logo300x250&location=1',
+        function (data) {
+            console.log(data);
+        });
+    jsonp('https://nex.163.com/q?app=7BE0FC82&c=homepage&l=33&site=netease&affiliate=homepage&cat=homepage&type=logo300x250&location=1',
+        function (data) {
+            console.log(data);
+        });
+    jsonp('https://nex.163.com/q?app=7BE0FC82&c=homepage&l=33&site=netease&affiliate=homepage&cat=homepage&type=logo300x250&location=1',
+        function (data) {
+            console.log(data);
+        });
+    //利用script的src不存在跨域;浏览器的安全机制 同源策略
+</script>

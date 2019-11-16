@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <h1>姓名是:{{name}}</h1>
+        <input type="text" v-model="name1">
+        <!-- 
+            在VUE 中所有的 v-xxx的行内属性,都是vue的指令
+         -->
+        <div v-once>
+            {{name1}}
+            <i>{{age}}</i>
+        </div>
+        <h3 v-text="name1"></h3>
+
+        <input type="number" v-model="age">
+        <h3>{{age >= 18 ? "成年人" : '未成年人'}}</h3>
+
+
+        <div>
+            {{p}}
+        </div>
+        <div v-text="p"></div>
+        <div v-html="p"></div>
+
+        <textarea v-model="n"></textarea>
+        <!-- <h1>{{n = 100}}</h1> -->
+        <h2>{{n}}</h2>
+        <div v-html="n"></div>
+        <div v-pre>
+            {{name}},
+            {{age}}
+            {{n}}
+        </div>
+        <div>
+            <h2>hello</h2>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    // 双向数据绑定;
+
+    /* 
+       v-model = 'vue变量'
+       v-text = 'vue变量'
+       v-html = 'vue变量' 这个是可以识别字符串中的Dom结构的 类似于 innerHTML
+       v-clock 后边不跟值:就是利用了vue渲染完成之前  元素上还会带有v-cloak属性
+               渲染完成之后,vue会把v-cloak属性去掉,这样在页面中就不会显示出小胡子语法了
+       v-once 后边不跟值,代表有这个属性的语法,vue只会渲染一次
+       v-pre  告诉vue; 有这个指令的标签及后代标签,都不用进行 编译;这样可以提高vue编译效率
+       
+    */
+    
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            name1: 666,
+            age:1,
+            p:`<h3>hello world</h3>`,
+            n:0
+        }
+    });
+</script>

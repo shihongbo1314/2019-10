@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn">按钮</button>
+</body>
+
+</html>
+<script>
+    // function on(ele,f){
+    //     ele.ary = ele.ary || [];
+    //     ele.ary.push(f)
+    // }
+    // function fire(ele,...arg){
+    //     ele.ary = ele.ary || [];
+    //     ele.ary.forEach(item => {
+    //         item.call(this,...arg)
+    //     });
+    // }
+    // function off(ele,f){
+    //      ele.ary = ele.ary || [];
+    //      let n = ele.ary.indexOf(f);
+    //      if(n != -1){
+    //          ele.ary.splice(n,1)
+    //      }
+    // }
+
+
+    function on(ele, type, f) {
+        if (/^my/.test(type)) {
+            // 不是原生事件,我们自己创造一个事件池  // 自己人为规定my开头的都是自定义事件
+            ele[type] = ele[type] || [];
+            ele[type].push(f);
+        } else {
+            //原生事件  我们不需要造事件池
+            type = type.replace(/^on/, '');//防止 传入的参数带这个on
+            ele.addEventListener(type, f, false);
+        }
+    }
+    function fire(ele, type, ...arg) {
+        if (/^my/.test(type)) {
+            // 不是原生事件,需要我们把事件池中的事件执行
+            ele[type] = ele[type] || [];
+            ele[type].forEach(item => {
+                item.call(this, ...arg)
+            });
+        }
+    }
+
+    function off(ele,type,f){
+        if (/^my/.test(type)) {
+            // 不是原生事件,我们自己创造一个事件池  // 自己人为规定my开头的都是自定义事件
+            ele[type] =ele[type] || [];
+            let n = ele[type].indexOf(f);
+            if(n != -1){
+                ele[type].splice(n,1)
+            }
+        } else {
+            //原生事件  我们不需要造事件池
+            type = type.replace(/^on/, '');//防止 传入的参数带这个on
+            ele.removeEventListener(type, f, false);
+        }
+    }
+
+    var f1 = function(){
+        console.log(666)
+    }
+    on(btn, 'click', function () {
+        console.log('点击1')
+    });
+    on(btn, 'onclick', function () {
+        console.log('点击2')
+    });
+    off(btn,'click',f1)
+
+
+</script>

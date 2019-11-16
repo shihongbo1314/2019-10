@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="name">
+    <input type="password" placeholder="密码">
+    <button id="btn">提交</button>
+
+    <a href="https://www.baidu.com/s?wd = 珠峰"></a>
+</body>
+</html>
+<script>
+    let inps = document.querySelectorAll('input');
+   function getData(){
+    var xhr = new XMLHttpRequest();
+    // get传参  在接口后边补写  search
+    // query  传参: 把要给后台的参数 拼接成对应的 search字符串  放到接口后边
+    // get 请求怎么避免走缓存???   每次拼接一个不相同的字符;
+    // let str = '';
+    // for(let k in obj){
+    //     str += `${k} = ${obj[k]}$`
+    // }
+    // str += `t = Math.random();`
+    // str = str.replace(/&$/,'');
+    xhr.open('get',`./data.json?name = ${obj.name}$psw = ${obj.psw}`,true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && /200|304/.test(xhr.status)){
+            console.log(xhr.response)
+        }
+    }
+    xhr.timeout = 2000;
+    xhr.ontimeout = function(){
+        console.log('请求超时')
+    }
+    xhr.send();
+   }
+
+   btn.onclick = function(){
+       let name = inps[0].value,
+           psw = inps[1].value;
+           console.log(name,psw)
+           let obj = {name,psw};
+           getData(obj);
+   }
+</script>

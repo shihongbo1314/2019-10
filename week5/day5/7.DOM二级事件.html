@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">
+        点击
+    </button>
+</body>
+</html>
+<script>
+    let box = document.getElementById('btn');
+    function f1(e){
+        console.log(1,e)
+    }
+    function f2(e){
+        console.log(2,e)
+    }
+    function f3(e){
+        console.log(3,e)
+    }
+    btn.addEventListener('click',f1,false);
+    btn.addEventListener('click',f2,false);
+    btn.addEventListener('click',f3,false);
+    btn.removeEventListener('click',f2,false);
+    document.ready = function(cb){
+        function fn(e){
+            cb.call(this,e);
+            document.removeEventListener('DOMContentLoaded',fn,false);
+        }
+        document.addEventListener('DOMContentLoaded',fn,false);
+    }
+
+
+    document.ready(function(){
+        console.log('DOM 加载完成')
+    });
+
+    Element.prototype.one =function(type,callback){
+        function fn(e){
+            callback.call(this,e);
+            this.removeEventListener(type,fn,false)
+        }
+        this.addEventListener(type,fn,false)
+    }
+    btn.one('click', function (e) {
+        console.log('myone',this)
+    })
+</script>

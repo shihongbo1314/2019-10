@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="./http_fetch.js"></script>
+<script>
+     http.get('./data.json',{a:12,b:234}).then((data)=>{
+         console.log('get',data)
+     }).catch((err)=>{
+         console.log('get',err)
+     });
+     http.post('./data.json',{a:12,b:234}).then((data)=>{
+         console.log('get',data)
+     }).catch((err)=>{
+         console.log('get',err)
+     });
+</script>

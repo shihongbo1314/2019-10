@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .outer {
+            width: 400px;
+            height: 400px;
+            padding: 50px;
+            background: #ccc;
+            box-sizing: border-box;
+        }
+
+        .inner {
+            width: 300px;
+            height: 300px;
+            background: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <input v-model="name">
+        <button v-on:click="myalert">按钮</button>
+        <button @click="myalert()">按钮2</button>
+        <button @click="myalert(666)">按钮3</button>
+        <button @click="myalert(666,777,$event,888,name)">按钮4</button>
+        <!-- <button @click="myalert.bind(this,1,222,321)">按钮5</button> -->
+        <a href="http://baidu.com" @click.prevent="myalert">百度</a>
+
+        <div class="outer" @click.self="outerFn">
+            <div class="inner" @click.passive.prevent="innerFn"></div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    // div.addEventListener('click',fn,{passive:true,capture:false})
+    // v-on 是转门用来绑定事件的指令：简写@
+    // @click='函数名'  在methods中的函数会接收一个事件对象作为参数
+    // @click='函数名()'  相当于没有给函数传递任何实参
+    // @click='函数名(666)'  相当于给函数传递了一个实参666
+    // 若既要传自己的参数 又要传事件对象 则需要手动写一个$event实参
+    // 事件修饰符：prevent(preventDefault)  stop(stopPropergation)  
+    //              once  只能点击一次;  self  只有当点击元素自身的时候才会触发对应的函数
+    //              capture  在捕获阶段触发对应的函数
+    //              passive  先执行默认行为 再执行对应的事件
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰"
+        },
+        methods: {
+            // 这个对象中存放的都是当前实例要用到的方法
+            // 这里的方法中的this统一是当前的实例
+            // methods中的内容和data中的内容都会被挂载到当前实例上
+            // 所以 methods中的属性和data中的属性名不能重复
+            myalert(e) {
+                console.log(this.name, e);
+                console.log(arguments);
+            },
+            outerFn() {
+                console.log('outer');
+            },
+            innerFn() {
+                console.log('inner');
+            }
+        }
+    })
+</script>

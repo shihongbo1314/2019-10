@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // call 改变this关键字指向的;
+    function fn(){
+        console.log(arguments);
+        console.log(this);
+        console.log('----------------------------')
+    }
+    fn();
+    var ary = [fn];
+    ary[0]();
+
+    // new 执行 开普一个作用域 形参赋值 变量提升 开辟一个堆内存 
+    // 把this指向改成这个堆内存; 代码执行  默认返回this
+    fn.call(ary,1,2,3,4);//fn执行  改变fn中的this指向   把1,2,3,4传给了fn;
+                         // call的第一个参数 是让fn中的this指向  这个参数
+                         //第二个及以后的参数 都是传给fn的实参
+                         // call执行结果  就是fn的执行结果
+     function myNew(classN,...arg){
+         var obj = new Object();
+         obj.__proto__ = classN.prototype;
+         var res = classN.call(obj,...arg)
+         return typeof res === 'object' ? res : obj;
+
+
+     }
+     var  ary = myNew(Array,10,20);// new Array(10,20) 
+     console.log(ary);
+
+     function myInstanceof(temp,classN){
+           //temp的某一次的 __proto__ 和 classN 的prototype 相等了;那就要返回true
+           if(typeof temp!=='object' && typeof temp !=='function'){
+               return false
+           }
+           var left = temp.__proto__,
+           reght = classN.prototype;
+           while(left){
+               if(left === righ){
+                   return true
+               }
+               left = left.__proto__;
+           }
+           return false;
+     }
+     []  instanceof Array; // 从数组到基类的原型链上 是否存在 Array的原型;
+     []  instanceof Object // 全是true  值类型  instanceof 任意 结果都是false  
+     
+
+     function myCall(context,...arg){
+           // this--->fn
+        //  return this(...arg)
+        //context.qqq();
+        // context.qqq = this;// context.qqq === fn
+        // var res = context.qqq(...arg);
+        // delete context.qqq;
+        // return res;
+        if(typeof context === 'object' && typeof context !== 'function' 
+        && context !== null){
+               arg.unshift(context)
+               context = window;
+        }
+        var a = Symbol();//唯一的不会重复的一个值;
+        context[a] = this;// context.qqq === fn
+        var res = context[a](...arg);
+        delete context[a];
+        return res;
+     }
+     Function.prototype.myCall = myCall;
+     fn.myCall(ary,6,6,6)
+
+     Object.prototype.toString.call('')//'[object String]'
+     ({}).toString.call('')
+</script>

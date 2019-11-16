@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        #outer {
+            width: 500px;
+            height: 500px;
+            background: red;
+            margin: 50px auto;
+            padding: 50px;
+        }
+
+        #center {
+            width: 400px;
+            height: 400px;
+            background: green;
+            padding: 50px;
+        }
+
+        #inner {
+            width: 300px;
+            height: 300px;
+            background: salmon;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <div id="center">
+            <div id="inner">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    // 点击的时候，根据html结构，点击子集，像击穿了一样，同样触发了父级的事件，
+    //     这是因为有事件的传播 也叫事件的冒泡传播
+    // 点击穿透  因为有事件的传播
+    window.onclick = function () {
+        console.log('点了window')
+    }
+    outer.onclick = function () {
+        console.log('点了outer')
+    }
+    center.onclick = function () {
+        console.log('点了center')
+    }
+    inner.onclick = function (e) {
+        e = e || window.event;
+        e.stopPropagation();//阻止事件的冒泡传播
+        e.canselBubble = true;// IE的阻止冒泡
+        console.log('点了inner')
+    }
+    // 事件传播的两个过程:  捕获   冒泡
+</script>

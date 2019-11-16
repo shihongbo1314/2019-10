@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="op">打开</button>
+    <button id="send">发送</button>
+</body>
+</html>
+<script>
+    /* 
+        同源策略:浏览器的安全机制
+        协议 域名  端口 必须保持一致:有一个不同就是跨域
+        
+        线上
+        jsonp
+        cors
+
+    开发:
+    proxy代理
+
+    postMessage  iframe  window.open打开的页面;
+    let tar = window.open('https://baidu.com');
+    //tar 是目标页面的全局对象
+    tar.postMessage('666','https://baidu.com');
+    目标页面: window.onmessage = function(){}
+    
+    
+    */
+//    window.open('https://baidu.com');
+     op.onclick = function(){
+         let tar = window.open('https://baidu.com');
+         send.onclick = function(){
+             tar.postMessage(666,'https://baidu.com')
+         }
+     }
+</script>

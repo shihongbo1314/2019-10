@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 400px;
+            height: 400px;
+            border: 1px solid salmon;
+            margin: 50px auto;
+            overflow: scroll;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div draggable="true">请问企鹅企鹅</div>
+
+
+    <div id="box">
+
+    </div>
+</body>
+</html>
+<script>
+    // new Promise(executor) ;executor(res,rej){}
+    // pending  resolved  rejected
+    // then  catch  finally 
+    // Promise. --->   resolve  reject   all   race
+
+    // $.extend()  $.fn.extend()   {}
+    // $.noConflict()
+
+    //  鼠标  键盘  input   系统的  ready(DOMContentLoaded)   onload
+    //  e = e || window.event;  e.preventDefault()  return false;  e.target||e.srcElement
+    //  事件的传播机制： 冒泡传播；  e.stopPropagation()  e.cancelBubble = true;
+    //  事件委托：冒泡传播 
+    
+    //  dragstart  drag  dragend   是绑定在被拖拽的元素身上；
+    //  dragenter  dragleave  dragover  drop   drop能起作用 需要 over有阻止默认行为的动作；
+    
+    var box = document.getElementById('box');
+    box.ondragover = function (e) {
+        e.preventDefault();
+    }
+    box.ondrop = function(e){
+        console.log(e)
+    }
+</script>

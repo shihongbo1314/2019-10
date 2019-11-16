@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <input type="text" v-model="money">分
+        <h1>价格是{{(money/100).toFixed(2)}}元</h1>
+        <h1>价格是{{money|fn(1,2,3,4,5,6,7,8)}}元</h1>
+        <!-- 把money的值传给fn 该位置展示的是fn的返回结果  | 称为管道符 -->
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    // 这种过滤器称为全局过滤器  Vue.filter('过滤器名称',回调函数)  回调函数的第一个参数是 | 前边的值
+    Vue.filter('fn', function (val) {
+        console.log(arguments);
+        return (val / 100).toFixed(2);
+    });
+    let old ='';
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            money: 0,
+            old:'',
+        },
+        filters: {
+            fn(val) {
+                if(old == val)return;
+                old = val;
+                // 私有过滤器  有私有的 就不会用全局的
+                // this不是当前的实例
+                return '$' + (val / 100).toFixed(2)
+            }
+        }
+    })
+</script>

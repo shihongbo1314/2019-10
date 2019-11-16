@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://www.treejs.cn/v3/css/demo.css" type="text/css">
+    <link rel="stylesheet" href="http://www.treejs.cn/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.treejs.cn/v3/js/jquery.ztree.core.js"></script>
+</head>
+
+<body>
+    <ul id="treeDemo" class="ztree"></ul>
+</body>
+
+</html>
+<script>
+    // enter 和 over的区别
+    // enter没有冒泡   over有冒泡
+    // outer盒子套着inner盒子  ； 从outer划入inner 的时候 会触发  outer的over事件 但是不触发enter事件
+
+    // 事件委托  把事件绑定到父级元素上， 通过点击子元素可以触发父级元素的对应事件  我们可以通过事件源来获知点击的元素
+    var zTreeObj;
+    // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+    var setting = {};
+    // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+    var zNodes = [{
+        name: "test1",
+        open: true,
+        children: [{
+            name: "test1_1"
+        }, {
+            name: "test1_2"
+        }]
+    },
+    {
+        name: "test2",
+        open: true,
+        children: [{
+            name: "test2_1"
+        }, {
+            name: "test2_2"
+        }]
+    }
+    ];
+    $(document).ready(function () {
+        zTreeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+    });
+</script>

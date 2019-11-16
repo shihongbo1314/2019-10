@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+       自定义类     
+     
+    */
+    function Person(){}//es5声明自定义类
+    Person.prototype.eat = function(){};
+    var p1 = new Person();//不传参数的情况下,小括号可以省略
+    p1.eat();
+    class Man{//es6声明自定义类
+        constructor(){// 必须写
+            this.name = 123;
+        }
+        eat(){
+            //保证这里的this都是当前类的实例
+            //在class声明的类中 原型上的共有属性  只能是函数;
+        }
+    }
+    Array.prototype.pop = function(n=1){ // n = n || 1;    cb && cb()
+        // n 代表了要删除的末尾的项数  把删除的项组成一个新数组返回
+        // n和数组的长度做判断
+        // this ---> ary
+        var temp = [];
+        n = n > this.length ? this.length : n;
+        temp = this.slice(this.length-n);
+        this.length -= n ;
+        // if(n > this.length){
+        //     // throw new Error('长度过分')
+        //     // temp = this.slice(0);
+        //     temp.push(...this)
+        //     this.length = 0;
+        // }else{
+        //     // n = 2; 则需要我们 把 length-2 和 length-1 这两项删除
+        //     temp = this.slice(this.length-n);
+        //     this.length -= n ;
+        // }
+        return temp;
+    }
+   var ary = [1,2,3,4,5]
+   Array.prototype = {};//原型重构 不起作用;内置类的原型是不能重新赋值的;
+   // 自定义类的原型重构时需要注意 contructor 的指向;
+
+   //max数组中的最大值   average 数组的平均值
+   Array.prototype.max =function(){
+       return this.sort((a,b)=>b-a)[0]
+       return Math.max(...this)
+       return Math.max.apply(Math,this);
+   }
+   Array.prototype.average = function(){
+       //this 是要操作的数组
+       return evel(this.join('+'))/this.length
+   }       
+    
+        
+   
+   ary.max()
+</script>

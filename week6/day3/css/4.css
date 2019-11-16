@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  background: url(../交互简历/images/cube-bg.jpg);
+  background-size: cover;
+}
+body #box {
+  width: 5rem;
+  height: 5rem;
+  perspective: 26.66666667rem;
+  position: absolute;
+  top: 5rem;
+  left: 3rem;
+}
+body #box ul {
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: 2.5rem 2.5rem -2.5rem;
+  width: 5rem;
+  height: 5rem;
+}
+body #box ul li {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+}
+body #box ul li img {
+  width: 5rem;
+  height: 5rem;
+}
+body #box ul li:nth-child(2) {
+  transform: rotateX(90deg);
+  transform-origin: bottom;
+}
+body #box ul li:nth-child(3) {
+  transform: rotateX(-90deg);
+  transform-origin: top;
+}
+body #box ul li:nth-child(4) {
+  transform: rotateY(90deg);
+  transform-origin: left;
+}
+body #box ul li:nth-child(5) {
+  transform: rotateY(-90deg);
+  transform-origin: right;
+}
+body #box ul li:nth-child(6) {
+  transform: translateZ(-5rem);
+}
+@keyframes move {
+  0% {
+    transform: rotateX(0) rotateY(0);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <ul>
+            <!-- 
+                v-for  用在哪个标签上 就循环展示哪个标签
+                v-for="自定义变量 in data中的数据"
+                自定义的变量只能在标签内部使用
+                v-for 可以嵌套使用
+            -->
+            <li v-for="qqq in ary">
+                {{qqq}}
+                <!-- <span v-for="aaa in [1,2,3]">
+                    {{qqq}}
+                </span> -->
+            </li>
+        </ul>
+        <button @click="ary.reverse()">反转</button>
+
+        <ul>
+            <!-- v-for 可以循环数组 对象 数字 -->
+            <li v-for="(v,i) in ary">
+                索引是{{i}} <br>
+                值是{{v}} <br>
+                ============================<br>
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="(v,k,i) in obj">
+                <!-- v是对象中的属性值  k是对象中的属性名  i是对象中的索引 -->
+                {{v}},{{k}},{{i}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="i in 10">
+                {{i}}
+            </li>
+        </ul>
+
+        <ul>
+            <li v-for="s in str">
+                {{s}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            ary: [100, 200, 300, 400],
+            obj: {
+                a: 10,
+                b: 20,
+                c: 30
+            },
+            n: 5,
+            str: "hello world"
+        }
+    })
+</script>

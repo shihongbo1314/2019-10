@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+     /* 
+         面向对象:
+             类       实例
+             人类      奥巴马
+        js中的内置类:  Array  String  NUmber  Function  RegExp  Date   Object ...
+         字面量   var ary = []
+         构造函数  var ary = new Array();
+         // 万物皆对象;
+         自定义类  function  A(){}
+         自定义类的实例只能通过 new 的方式创建;
+    js中的常见设计模式
+         单例模式  高级单例模式 工厂模式  构造函数模式 原型模式
+      */
+      // 单例模式  命名空间
+      var obj = {
+        name:123,
+        age:234
+      }
+
+      // 高级单例  闭包  比普通单例多了隐私空间
+      var obj2 = (function(){
+          var name = 123;
+          var age = 333;
+          function f(){
+              console.log(name,age)
+          }
+          return {
+              name,
+              age,
+              f
+          }
+      })()
+      obj.name = 666;
+      obj.f()
+
+
+      // 工厂模式  批量产生单例
+      function factory(name,age){
+          var obj = {
+              name,age,
+              eat(){},
+              play(){}
+          }
+          return obj;
+      }
+      // 构造函数模式
+      function Person(name,age){
+          this.name = name,
+          this.age = age,
+          this.eat = function(){
+
+          }
+          this.play = function(){
+
+          }
+      }
+      var p1 = new Person('小明',100);//p1是 Person类的一个实例
+      // new 执行 ,函数中的this就是当前创造的实例  默认返回的就是this;
+      console.log(p1)
+
+      
+
+</script>

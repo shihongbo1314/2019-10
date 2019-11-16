@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>a页面</h1>
+    <button id="open">打开</button>
+    <button id="send">发送</button>
+</body>
+</html>
+<script>
+    let open = document.querySelector('#open'),
+        send = document.querySelector('#send');
+        open.onclick = function(){
+           let tar = window.open('http://127.0.0.1:5500/js/19-10/week7/day4/b.html');
+           console.log(tar);//目标页面的window
+           send.onclick = function(){
+                tar.postMessage('你好','http://127.0.0.1:5500')
+           }
+        }
+</script>

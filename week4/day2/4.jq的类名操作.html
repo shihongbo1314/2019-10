@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            background: salmon
+        }
+        .www{
+            font-size: 50px;
+        }
+        .show{
+            height: 200px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="box" class="qqq">珠峰培训</div>
+
+    <div class="show">qfsdffsfsfsfdsfdsfdsfds</div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    // JQ 先引入 再使用；
+    // JQ获取到的元素统一是一个集合;我们把这个集合称为JQ对象；只有JQ对象才能调用JQ的方法
+    // JQ 获取元素  $('css选择器');
+    var box = document.getElementById('box');// 原生对象
+    var $box = $('.qqq');// JQ对象
+    console.log(box,$box);
+    $box.addClass('qqq');
+    // box.addClass('www');
+    $box.on('click',function(){
+        console.log(this);//原生对象
+        // 原生对象转成jq对象: $(原生对象))
+        // $box.toggleClass('www')
+        var $this = $(this)
+        $(this).toggleClass('www')
+        $this.css({color:'red',background:'blue'})
+    });
+
+</script>

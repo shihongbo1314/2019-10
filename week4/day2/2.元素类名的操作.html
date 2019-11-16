@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box box1 box2 qqq box22 box_3 qqqaaa">
+        hello world
+    </div>
+</body>
+
+</html>
+<script>
+    // 自己封装一个方法可以实现 hasClass  addClass  removeClass 的功能
+    var box = document.getElementsByClassName('box')[0];
+    hasClass(box, 'qqq') // false  判断元素是否有对应的类名
+    function hasClass(ele, cln) {
+        // 先获取元素的所有的类名 再去查看类名中有没有指定的类名
+        let str = ele.className;
+        // if (str.indexOf(cln) != -1) {
+        //     return true;
+        // }
+        // return false;
+
+        // let reg = new RegExp(cln, 'g');
+        // return reg.test(str);
+
+        // 思路2 把列明字符串按照空格拆分成数组，然后判断数组中是否有对对应的类名
+        // let reg = / +/g;
+        // let ary = str.split(reg);
+        // if (ary.indexOf(cln) != -1) {
+        //     return true;
+        // }
+        // return false;
+
+        // 思路3 把类名做成一个正则 这个正则需要有左右边界
+        //  /\bbox\b/
+        // let reg = new RegExp(`\\b${cln}\\b`, 'g');
+        // return reg.test(str);
+
+        // 思路4 把类名做成一个正则 这个正则是判断了类名的左右情况
+        let reg = new RegExp(`(^| +)${cln}( +|$)`);
+        return reg.test(str);
+    }
+
+    // 多个类名的判断
+    function hasClass2(ele, cln) {
+        // 先把cln去除首尾空格 然后拆分成数组
+        cln = cln.replace(/^ +| +$/g, ''); // 去除首尾空格
+        let ary = cln.split(/ +/);
+        let str = ele.className;
+        let flag = true;
+        for (let i = 0; i < ary.length; i++) {
+            let reg = new RegExp(`(^| +)${ary[i]}( +|$)`);
+            if (!reg.test(str)) {
+                return false;
+                break;
+            }
+        }
+        return flag;
+    }
+    hasClass2(box, '  qqqaaa   box  box2');
+
+    HTMLElement.prototype.hasClass = function hasClass(cln = '') {
+        cln = cln.replace(/^ +| +$/g, ''); // 去除首尾空格
+        let ary = cln.split(/ +/);
+        let str = this.className;
+        let flag = true;
+        for (let i = 0; i < ary.length; i++) {
+            let reg = new RegExp(`(^| +)${ary[i]}( +|$)`);
+            if (!reg.test(str)) {
+                return false;
+                break;
+            }
+        }
+        return flag;
+    }
+    box.hasClass('box qqq box2');
+
+    // 给元素添加类名
+
+    HTMLElement.prototype.addClass = function addClass(cln) {
+        // 单个类名 先查看有没有对应的类名 没有再去添加
+        // this-->box
+        if (this.hasClass(cln)) return;
+        cln = cln || '';
+        cln = cln.replace(/^ +| +$/g, '');
+        let ary = cln.split(/ +/);
+        for (let i = 0; i < ary.length; i++) {
+            if (!this.hasClass(ary[i])) {
+                this.className += ' ' + ary[i];
+            }
+        }
+        // if (this.hasClass(cln)) return;
+        // this.className += ' ' + cln; // 加空格是为了防止cln和className的最后一个单词拼成一个词
+    }
+
+    // 给元素删除类名
+    HTMLElement.prototype.removeClass = function removeClass(cln) {
+        cln = cln || '';
+        cln = cln.replace(/^ +| +$/g, '')
+        let str = this.className;
+        let ary = cln.split(/ +/);
+        for (let i = 0; i < ary.length; i++) {
+            let reg = new RegExp('\\b' + ary[i] + '\\b', 'g')
+            str = str.replace(reg, '')
+        }
+        str = str.replace(/ +/g, '');// 把多个空格替换成一个空格
+        this.className = str;
+    }
+
+    HTMLElement.prototype.toggleClass = function toggleClass(cln) {
+        if (this.hasClass(cln)) {
+            this.removeClass(cln)
+        } else {
+            this.addClass(cln)
+        }
+
+    }
+    // box.toggleClass('box');//有这个类名就删除  没这个类名就添加
+</script>

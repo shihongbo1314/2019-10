@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            box-sizing: border-box;
+        }
+
+        #outer {
+            width: 500px;
+            height: 500px;
+            background: red;
+            margin: 50px auto;
+            padding: 50px;
+        }
+
+        #center {
+            width: 400px;
+            height: 400px;
+            background: blue;
+            padding: 50px;
+        }
+
+        #inner {
+            width: 300px;
+            height: 300px;
+            background: salmon;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="outer">
+        <div id="center">
+            <div id="inner">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    var box = document.getElementById('box')
+    // // Dom 0级事件绑定
+    // box.onclick = function(){
+    //     console.log(555)
+    // }
+    // box.onclick = function(){
+    //     console.log(666)
+    // }
+    // //JQ是利用了 Dom的二级事件绑定
+    // $('#box').on('click',function(){
+    //     console.log(111)
+    // })
+    // $('#box').on('click',function(){
+    //     console.log(222)
+    // })
+    var outer = document.getElementById('outer'),
+        center = document.getElementById('center'),
+        inner = document.getElementById('inner');
+    // outer.addEventListener('click',function(){
+    //     console.log(111)
+    // },false);
+    // outer.addEventListener('click',function(){
+    //     console.log(111111)
+    // },false);
+    // outer.addEventListener('click',function(){
+    //     console.log(1111111111)
+    // },false);
+    // // false 代表对应的函数需要在冒泡阶段触发;true 代表对应的函数需要在捕获阶段触发
+    // center.addEventListener('click',function(){
+    //     console.log(222)
+    // },false);
+    // inner.addEventListener('click',function(){
+    //     console.log(333)
+    // },false)
+
+    // Element.prototype.on = function(type,callback){
+    //     this.addEventListener(type,callback,false)
+    // }
+    // outer.on('click',function(){
+    //     console.log(666)
+    // // })
+    // function f(e) {
+    //     console.log(11, e.target)
+    // }
+    // inner.addEventListener('click', f, false)//
+    // inner.removeEventListener('click', f, false)//移除绑定事件
+
+
+    // window.addEventListener('load', function () {
+    //     console.log('load')
+    // }, false)
+
+    // window.ready = function (cb) {
+    //     window.addEventListener('DOMContentLoaded',cb, false)
+    // }
+    // window.ready(function () {
+    //     console.log('结构加载完成')
+    // })
+
+
+
+    /* 
+       DOM 的二级事件绑定; 元素.addEventListener('事件类型',回调函数,冒泡阶段或者捕获阶段)
+              IE特有的  attachEvent('on事件类型',回调函数) detachEvent('on事件类名',回调函数)
+       二级事件的同一个元素的用一个事件  可以绑定多个回调函数;
+    */
+
+    $('#inner').one('click', function () {
+        console.log('one')
+    })
+    Element.prototype.one =function(type,callback){
+        function fn(e){
+            callback.call(this,e);
+            this.removeEventListener(type,fn,false)
+        }
+        this.addEventListener(type,fn,false)
+    }
+    inner.one('click', function (e) {
+        console.log('myone',this)
+    })
+</script>

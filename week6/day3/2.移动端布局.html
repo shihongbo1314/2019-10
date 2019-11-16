@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            /* width: 400px;
+            height: 400px; */
+            width: 80vw;
+            height: 80vh;
+            background: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        dpr 1 2 3;
+        rem  1个rem 就是html标签的font-size
+        em   相对于父节点的font-size(前提是 设置不是自己的font-size属性)
+             自己有font-size属性是 em是相对于自己的font-size（除了font-size属性）
+             自己的font-size属性的em还是相对于父节点的font-size；
+        vh  vw : 1vh就是一个屏幕高度的1%； 1vw就是一个屏幕宽度的1%;
+     -->
+    <div id="box">
+        <p>但是</p>
+    </div>
+</body>
+</html>
+<script>
+    // 1rem   100px   
+    // 假设设计稿的宽度是750px;  html的font-size怎么设置？？ 能保证在所有的手机上都是一个rem 100px
+    let w = document.documentElement.clientWidth || document.body.clientWidth;
+    // w/750 = x/100
+    document.documentElement.style.fontSize = w*100/750+'px';
+    // 在设计稿上量出多少， 在页面上设置时直接把量出的值/100 再配上rem这个单位即可
+
+    // flexible.js  淘宝； 把一个屏幕分成10份
+</script>

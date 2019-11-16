@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+       function  f(){}
+
+       普通函数
+       构造函数
+       普通对象
+    
+    
+     */
+     function Person(name,age){
+         this.name =name ;
+         this.age = age;
+     }
+     Person();
+     new Person();
+     Person.age = 100;
+
+
+     function fn(){
+         //普通数组 __proto__    Array.prototype
+         // arguments 是个类数组 它的__proto__指向了基类的原型
+         Array.form(arguments);
+         [...arguments];
+         [].slice.call(arguments,0);//[].slice(0)  [].slice()
+         console.log(res);
+         arguments.__proto__ = Array.prototype;
+         console.log(arguments.slice())
+     }
+     fn(1,2,3,4,5)
+</script>

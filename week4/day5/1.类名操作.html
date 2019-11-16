@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box" class="qqq aaa a_qw">珠峰培训</div>
+</body>
+
+</html>
+<script>
+    var box = document.getElementById('box');
+    HTMLElement.prototype.hasClass = function (cln) {
+        //this 是元素
+        let str = this.className;
+        str = str.tirm();//可以直接去除首位空格;
+        str = str.replace(/^ +| +$/g, '')
+        let ary = str.split(/ +/);
+        cln = cln.replace(/^ +| +$/g, '');
+        //   return ary.indexOf(cln) == -1 ? false : true  单个类名操作
+        let arr = cln.split(/ +/);
+        // 使用ary 和arr 的交集数组 与arr进行长度的比较
+        let temp = [];//交集数组
+        for (let i = 0; i < ary.length; i++) {
+            ary.indexof(arr[i]) == -1 ? null : temp.push(arr[i])
+        }
+        return temp.length === arr.length
+    }
+    HTMLElement.prototype.hasClass = function (cln) {
+        if (!cln.replace(/^ +| +$/g, '').length) return flase;
+        let arr = cln = cln.replace(/^ +| +$/g, '').split(/ +/);
+        //  let ary = thi.className.replace(/^ +| +$/g,'').split(/ +/);
+        let ary = this.className;
+        let falg = true;
+        for (let i = 0; i < arr.length; i++) {
+            let reg = new RegExp(`\\b${arr[i]}\\b`)//  /\bqqq\b/
+            if (!reg.test(str)) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+    HTMLElement.prototype.addClass = function (cln){
+        if(this.hasClass(cln))return;
+        let arr = cln.replace(/^ +| +$/g,'').split(/ +/);
+        let str = this.className;
+        arr.forEach(item => {
+            this.hasClass(item) ? null : str += ' '+item
+        });
+        str = str.replace(/^ +| +$/g,'').replace(/ +/g,' ')
+        this.className = str;
+    }
+    HTMLElement.prototype.removeClass = function (cln){
+        if(this.hasClass(cln))return;
+        let arr = cln.replace(/^ +| +$/g,'').split(/ +/);
+        let str = this.className;
+        arr.forEach(item=>{
+            let reg = new RegExp(`\\b${item}\\b`,'g');
+            str = str.replace(reg,'');
+        })
+        str = str.replace(/^ +| +$/g,'').replace(/ +/g,' ')
+        this.className = str;
+    }
+    HTMLElement.prototype.toggleClass = function (cln){
+        if(this.hasClass(cln)){
+            this.removeClass(cln)
+        }else{
+            this.addClass(cln)
+        }
+    }
+    box.hasClass('a')//false
+    box.hasClass(' aaa')//true
+
+
+    console.log(box.classList)
+    box.classList.add('sss','zzz')
+    box.classList.contains('sss')//只能写一个参数
+    box.classList.remove('zzz')
+    box.classList.toggle('zzz')
+
+
+    $('#box').addClass()
+    $('#box').hasClass()
+    $('#box').removeClass()
+    $('#box').toggleClass()
+</script>

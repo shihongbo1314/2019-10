@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    //实现一个判断数据类型的方法 getType()
+    ''.getType();// string
+    (1).getType();//number
+    [].getType();//array
+    Object.prototype.getType = function () {
+        var str = this.constructor.toString();
+        str = str.slice(9, str.indexOf('('))
+        return str.toLowerCase();
+    }
+
+    // 封装mypop mypush 返回值是改变后的原有数组
+    var ary = [1, 2, 3, 4, 5]
+    Array.prototype.myPop = function () {
+        this.length--;
+        return this;
+    }
+    Array.prototype.mypush = function (...ary) {
+        var l = ary.length;
+        for (var i = 0; i < l; i++) {
+            this[this.length] = ary[i]
+        }
+        return this
+    }
+    ary.myPop().myPush(6, 6, 6).myPop().myPush(4, 5)
+
+    // myReverse 等同于 reverse
+    Array.prototype.myReverse = function () {
+        for (var i = 0; i < this.length / 2; i++) {
+            let temp = this[i];
+            this[i] = this[this.length - 1 - 1];
+            this[this.length - 1 - i] = temp;
+        }
+        return this;
+    }
+    // 
+    Array.prototype.myUnique = function () {
+        var arr = [...(new Set(this))]
+        this.length = 0;
+        this.push(...arr);
+        return this;
+        //    for(var i = 0; i < arr.length;i++){
+        //        this.push(arr[i])
+        //    }
+    }
+
+    // 利用对象去重
+    var obj = {};
+    for (var i = 0; i < this.length; i++) {
+        var temp = this[i];
+        if (obj.hasOwnProperty(temp)) {
+            // 思考：把i 这一项跟最后一项交换位置 然后删除最后一项
+            this.splice(i, 1);
+            i--;
+        } else {
+            obj[temp] = temp;
+        }
+    }
+    return this
+
+    // indexOf lastIndexOf 获取的值一样 这就是不重复的
+    function unique3(arr) {
+        //若indexof 和lastindexof 得到的值不一样 说明 后边有重复的项
+        for (var i = 0; i < arr.length; i++)
+            var n = arr.indexOf(arr[i]),
+                m = arr.lastIndexOf(arr[i]);
+        if (n !== m) {
+            arr.splice(m, 1);//n 和m不同说明:索引为m的项是重复项;需要我们删除掉
+            //删除之后 我们仍然需要用当前的arr[i] 接着去查看 是否还有重复的;
+            i--;
+        }
+        return arr;
+    }
+    var res4 = unique3(ary)
+    
+
+</script>

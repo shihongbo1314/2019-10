@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+         .box{
+             width: 200px;
+             height: 200px;
+             background: red;
+             transform: skew(45deg);
+             animation: qqq 1s infinite linear;
+             position: absolute;
+             left: 500px;
+             top: 200px;
+             
+             
+         }
+         .box1{
+             width: 200px;
+             height: 200px;
+             background:yellowgreen;
+             transform: skew(30deg);
+             animation: qqq1 1s infinite linear;
+             position: absolute;
+             left: 500px;
+             top: 200px;
+             
+             
+         }
+         @keyframes qqq {
+             0%{
+                 transform: rotate(0deg);
+             }
+             100%{
+                 transform: rotate(360deg);
+             }
+         }
+         @keyframes qqq1 {
+             0%{
+                 transform: rotate(0deg);
+             }
+             100%{
+                 transform: rotate(360deg);
+             }
+         }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <div class="box1"></div>
+    <!-- 
+        css3: transition   animation  (@keyframs)
+              transform    translate  rotate  skew    scale
+              perspective:2000px
+              transform-style:preserve-3d
+     -->
+</body>
+</html>

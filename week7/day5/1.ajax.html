@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let xhr = new XMLHttpRequest();
+    //get head  delete;   post  options  put ..
+    xhr.open(type,url,async);
+    // ontimeout  onabort
+    // timeout = 2000     abort()
+    xhr.onreadystatechange = function(){
+        //readyState 0 1 2 3 4 
+        //status  200 301 302 304 307 403 404 405 5xx
+        if(xhr.readyState == 4){
+            if(/2\d{2}|304/.test(xhr.status)){
+
+            }else if(/[45]\d{2}/.test(xhr.status)){
+
+            }
+        }
+    }
+    xhr.send('123456')
+    // webSocket
+    // socket.io  它是webSocket的一个封装库
+    let ws = new WebSocket('wss://docs.qq.com/socket.io/?gtag=main_page_p.24092244&EIO=3&transport=websocket')
+    
+
+    ws.onopen  = function(e){
+ 
+    }
+    ws.onmessage = function(e){
+        //链接 出现失败的时候会触发
+    }
+    ws.onerror = function (e){
+        // 链接出现错误的时候
+    }
+    ws.onclose = function(e){
+        //链接被关闭的时候
+    }
+    ws.send({a:123})
+</script>

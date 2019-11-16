@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>重置密码</h1>
+    <input type="=password">
+    <button id="btn">提交</button>
+</body>
+</html>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/md5.min.js"></script>
+<script src="../js/axios.min.js"></script>
+<script src="../js/axios.defaults.js"></script>
+<script>
+    let id = location.href.queryURLParams().id;
+    $('#btn').on('click',function(){
+        axios.post('/user/resetpassword',{
+            userId:id,
+            password:md5($('input').val())
+        }).then((data)=>{
+            if(data.code==0){
+                location.href = './userlist.html'
+            }
+        })
+    });
+</script>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        ul>li{
+            /* 子代选择器 ul的儿子一级的li 不含孙子级的li */
+            height: 50px;
+            line-height: 50px;
+            /* height === line-height  字体上下居中 */
+        }
+        ul>li:nth-child(2n){
+            /* 偶数个元素 */
+            /* background: salmon */
+        }
+        ul>li:nth-child(2n-1){
+            /* 偶数个元素 */
+            /* background: darkcyan */
+        }
+        /* ul li */
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+</html>
+<script>
+    // var oLis = document.getElementsByTagName('li');
+    var oLis = document.querySelectorAll('ul>li');
+    for(var i = 0; i < oLis.length;i++){
+        var str = i%2 ? 'salmon' : 'darkcyan';
+        oLis[i].style.background = str;
+        oLis[i].mybg = str;
+        // oLis[i].myIndex = i;
+        oLis[i].onmouseenter = function(){
+            this.style.background = 'gold'
+        }
+        oLis[i].onmouseleave = function(){
+            this.style.background = this.mybg;
+        }
+        oLis[i].onclick = function(){
+            alert(`我是第${this.i+1}个元素`)
+        }
+    }
+</script>i

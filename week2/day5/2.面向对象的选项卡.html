@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 600px;
+            margin: 30px auto;
+
+        }
+
+        .tab_box {
+            border: 1px solid salmon;
+            display: flex;
+        }
+
+        .tab {
+            flex: 1;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tab:nth-child(2) {
+            border: 1px solid salmon;
+            border-bottom: none;
+            border-top: none;
+        }
+
+        .tab.current {
+            /*同时又 tab 和 current者两个类名的元素才会有对应的样式 */
+            background: salmon;
+            color: #fff;
+        }
+
+        .body_box {
+            width: 600px;
+            height: 300px;
+            border: 1px dashed salmon;
+            border-top: none;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .body {
+            width: 600px;
+            height: 300px;
+            text-align: center;
+            line-height: 300px;
+            font-size: 50px;
+            display: none;
+        }
+
+        .body.current {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <ul class="tab_box">
+            <li class="tab current">css</li>
+            <li class="tab">JS</li>
+            <li class="tab">HTML</li>
+        </ul>
+        <ul class="body_box">
+            <li class="body current">CSS基础</li>
+            <li class="body">JS基础</li>
+            <li class="body">HTML基础</li>
+        </ul>
+    </div>
+    <div class="box" id="box2">
+        <ul class="tab_box">
+            <li class="tab current">css</li>
+            <li class="tab">JS</li>
+            <li class="tab">HTML</li>
+        </ul>
+        <ul class="body_box">
+            <li class="body current">CSS基础</li>
+            <li class="body">JS基础</li>
+            <li class="body">HTML基础</li>
+        </ul>
+    </div>
+    <div class="box" id="box3">
+        <ul class="tab_box">
+            <li class="tab current">css</li>
+            <li class="tab">JS</li>
+            <li class="tab">HTML</li>
+        </ul>
+        <ul class="body_box">
+            <li class="body current">CSS基础</li>
+            <li class="body">JS基础</li>
+            <li class="body">HTML基础</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    class Tab{
+        constructor(idSelector){
+            this.box = document.querySelector(idSelector);
+            this.tabs = this.box.querySelectorAll('.tab');
+            this.bodys = this.box.querySelectorAll('.body');
+        }
+        myBind(){
+            // this 是当前类的实例
+            let _this = this;
+            for(let i = 0;i < this.tabs.length;i++){
+                this.tabs[i].onclick = function(){
+                    _this.clearClass();
+                    this.classList.add('current')
+                    _this.bodys[i].classList.add('current');
+
+                }
+            }
+        }
+        clearClass(){
+            for(let i = 0; i < this.tabs.length;i++){
+                // this.tabs[i].className = 'tab';
+                // this.body[i].className = 'body';
+                 this.tabs[i].classList.remove('current')
+                 this.bodys[i].classList.remove('current')
+            }
+        }
+    }
+    var tab1 = new Tab('#box');
+    tab1.myBind();
+</script>

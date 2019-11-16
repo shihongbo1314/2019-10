@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var n = 1;
+    var str = '';
+    var ary = [];
+    var obj = {};
+    n.constructor
+
+    // 原型重构  // 注意constructor的指向;
+    function Person(){
+        this.name = name;
+        this.age = age;
+    }
+    Person.prototype.eat = function(){}
+
+    var obj = {
+        constructor:Person,
+        eat(){},
+        play(){}
+    }
+    Person.prototype = obj
+</script>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+
+</html>
+<script src="./jquery-3.3.1.js"></script>
+<script>
+    // $.ajax({
+    //     url: './data.json',
+    //     success: function () {
+    //         $.ajax({
+    //             url: './data,json',
+    //             success: function () {
+
+    //             }
+    //         })
+    //     }
+    // })
+
+    // executor  函数是同步执行的,then  catch  里边的函数时异步执行的
+    // Promise 实例有三个状态 分别是 pending(等待状态) resolved(成功状态) rejected(失败状态)
+    // pending代表当前的promise还是处在等待状态
+    // resolved代表当前走了成功的回调函数
+    // rejected代表当前走了失败的回调函数
+    // 状态一旦确认修改 就不会再发生任何改变
+    // let p = new Promise(function (resolve, reject) {
+    //     // resolve  代表执行成功对应的回调函数
+    //     // reject   代表执行失败对应的回调函数
+    //     // 具体是执行成功还是失败 是由书写 executor函数的这个人决定的
+    //     setTimeout(() => {
+    //         // resolve(123);
+    //         reject(eee); // 异步报错捕获不到
+    //     }, 3000);
+    //     // resolve(qqq)
+    // });
+    // // console.log(p);
+    // // p.then() 然后执行
+    // // then 接收两个函数作为参数 第一个函数对应resolve  第二个函数对应reject
+    // p.then(function (data) {
+    //     console.log('success')
+    //     console.log(data)
+    // }, function (err) {
+    //     console.log('error')
+    //     console.log(err)
+    //     console.log(aaa)
+    // }).then(function (data2) {
+    //     console.log('data2', data2)
+    // }, function (err2) {
+    //     console.log('err2', err2)
+    // })
+
+
+    let p = new Promise(function (res, rej) {
+        $.ajax({
+            url: './data.json',
+            success: res,
+            error: function (data) {
+                console.log(data)
+                rej(data)
+                // res(data)
+            },
+            // error:rej
+        })
+    });
+    p.then(function (data) {
+        // then 可以写两个参数 也可以只写一个参数，对应的是成功的回调，失败的信息我们可以通过catch捕获
+        console.log(data);
+        return new Promise(function (res, rej) {
+            res(666)
+        });
+    }).then(function (data2) {
+        console.log(data2);
+    }).catch(function (err) {
+        console.log(err);
+    })
+</script>

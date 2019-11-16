@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            overflow: hidden;
+        }
+        .lit_box{
+            width: 200px;
+            height: 200px;
+            border: 1px solid salmon;
+            position: relative;
+            float: left;
+            margin: 50px;
+        }
+        .lit_box img{
+            width: 100%;
+            height: 100%;
+        }
+        .lit_box .mask{
+            width: 100px;
+            height: 100px;
+            background: rgba(0,0,0,0.3);
+            position: absolute;
+            top:0;
+            left: 0;
+            cursor: move;
+
+        }
+        .big_box{
+            float: left;
+            width: 300px;
+            height: 300px;
+            border:1px solid salmon;
+            overflow: hidden;
+            position: relative;
+        }
+        .big_box img{
+            width: 600px;
+            height: 600px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <div class="lit_box">
+            <img src="../day3/img/lit.jpg" alt="">
+            <div class="mask"></div>
+        </div>
+        <div class="big_box">
+            <img src="../day3/img/big.jpg" alt="">
+        </div>
+    </div>
+
+</body>
+</html>
+<script>
+    // var box = document.getElementById('box'),
+    //     litBox = box.getElementsByClassName('lit_box')[0],
+    //     mask = box.getElementsByClassName('mask')[0],
+    //     bigBox = box.getElementsByClassName('big_box')[0],
+    //     bigImg = bigBox.getElementsByTagName('img')[0];
+    // function init(){
+    //     // 初始化  把大盒子和蒙层隐藏掉
+    //     mask.style.display = 'none'
+    //     bigBox.style.display = 'none'
+    // }
+    // init();
+
+    // litBox.onmouseenter = function(){
+    //     mask.style.display = 'block'
+    //     bigBox.style.display = 'block'
+    // }
+    // litBox.onmousemove = function(e){
+    //     // 鼠标在盒子上移动  我们要让蒙层跟着移动
+    //     // 需要算出  鼠标相对于盒子的位置
+    //     let o = offset(this);
+    //     // let l = e.pageX - o.l,//鼠标行对盒子的位置
+    //     //     t = e.pageY - o.t;
+    //     let l = e.pageX - o.l -  mask.offsetWidth/2,
+    //         t =  e.pageY - o.t -  mask.offsetHeight/2;
+    //     let maxL = this.clientWidth - mask.clientWidth,
+    //         maxT = this.clientHeight - mask.clientHeight;
+    //     l = l <=0 ? 0:(l >= maxL ? maxL : l);
+    //     t = t <=0 ? 0:(t >= maxT ? maxT : t);
+    //     mask.style.left = l +'px';
+    //     mask.style.top = t + 'px';
+    //     mask.style.transform = `translate(${1}px,${t}px)`
+
+
+    //     let percent = bigBox.clientWidth / mask.clientWidth;
+    //     // bigImg.style.left = -l*percent + 'px',
+    //     // bigImg.style.top = -t*percent + 'px';
+    //     bigImg.style.transform = `translate(${-l*percent}px,${-t*percent}px)`
+    // }
+    // litBox.onmouseleave = function(){
+    //     init();
+    // }
+    // // pure
+    // function offset(ele){
+    //     let t = ele.offsetTop,
+    //         l = ele.offsetLeft,
+    //         temp = ele.offsetParent;
+    //     while(temp){
+    //         t += temp.offsetTop + temp.clientTop;
+    //         l += temp.offsetLeft + temp.clientLeft;
+    //         temp = temp.offsetParent
+    //     }
+    //     return {
+    //         l,t
+    //     }
+    // }
+
+
+
+
+
+
+
+    function offset(ele) {
+        let t = ele.offsetTop;
+        let l = ele.offsetLeft;
+        let temp = ele.offsetParent;
+        while (temp) {
+            t += temp.offsetTop + temp.clientTop;
+            l += temp.offsetLeft + temp.clientLeft;
+            temp = temp.offsetParent
+        }
+        return {
+            l,
+            t
+        }
+    }
+
+    function fd(id) {
+        var box = document.getElementById(id),
+            litBox = box.getElementsByClassName('lit_box')[0],
+            mask = box.getElementsByClassName('mask')[0],
+            // bigBox = box.getElementsByClassName('big_box')[0],
+            // bigImg = bigBox.getElementsByTagName('img')[0];
+            bigImg = null;
+        /* function init(){
+            //初始化把小蒙层跟大盒子隐藏掉
+            mask.style.display = 'none';
+            bigBox.style.display = 'none';
+        }
+        init(); */
+        litBox.onmouseenter = function () {
+            mask.style.display = 'block';
+            // bigBox.style.display = 'block';
+            let div = document.createElement('div');
+            div.className = "big_box";
+            div.innerHTML = ` <img src="../day3/img/big.jpg" alt="">`;
+            box.appendChild(div);
+            bigBox = box.getElementsByClassName('big_box')[0],
+            bigImg = bigBox.getElementsByTagName('img')[0];
+        }
+        litBox.onmouseleave = function () {
+            // init();
+            box.removeChild(bigBox);
+            mask.style.display = 'none';
+        }
+        litBox.onmousemove = function (e) {
+            //鼠标在盒子上移动我们要让蒙层跟着移动
+            //需要算出 鼠标相对于盒子的位置
+            //e.pageX 是鼠标到body的位置
+            let o = offset(this);
+            /* let l = e.pageX - o.l,//鼠标相对于盒子的位置
+                t = e.pageY - o.t; */
+            let l = e.pageX - o.l - mask.offsetWidth / 2, //让鼠标位置居中
+                t = e.pageY - o.t - mask.offsetHeight / 2;
+            let maxL = this.clientWidth - mask.clientWidth,
+                maxT = this.clientHeight - mask.clientHeight; //右下边界
+            l = l <= 0 ? 0 : (l >= maxL ? maxL : l);
+            t = t <= 0 ? 0 : (t >= maxT ? maxT : t);
+            /* mask.style.left = l+'px';
+            mask.style.top = t  +'px'; */
+            mask.style.transform = `translate(${l}px,${t}px                               3)`
+
+            let percent = bigBox.clientWidth / mask.clientWidth;
+            /* bigImg.style.left = -l*percent +'px';
+            bigImg.style.top = -t*percent +'px'; */
+            bigImg.style.transform = `translate(${-l*percent}px,${-t*percent}px)`
+        }
+    }
+    fd('box')
+</script>

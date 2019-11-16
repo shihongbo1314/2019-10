@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        正则 是一种处理字符串的规则;
+        js中的正则 具体体现出来 是一种数据类型; RegExp
+        js 编写正则的两种方式:
+             var reg = /q/;一般都是字面量的方式
+             var reg = new RegExp('q');一般涉及到变量时 才会使用这种方式
+        正则有两种用途:
+          用于匹配 test  编写一个正则;看对应的字符串是否符合该正则
+          用于捕获 exec 编写一个正则;可以把对应字符串中的符合规则的部分获取到
+        var reg = /-qe/;双斜杠中间的内容 我们称为正则的元字符;斜杠外边的内容我们称为修饰符
+
+        常用的元字符可以分为有特殊含义的元字符  量词元字符  普通元字符
+        有特殊含义的元字符:
+           \  :转义字符 把正则中有特殊含义的字符 转成字符本身(不再有任何特殊的含义)
+           \d : 是代表了0-9之间的数字
+           \D : 代表除了0-9的任意字符;
+           \w : 代表数字 字母 下划线 
+           \W : 除了数字 字母 下划线之外的任意字符
+           ^  : 以什么 字符开头
+           $  : 以什么 字符结尾
+           .  : 除了换行以外的所有字符
+           \n : 代表换行
+           x|y: 代表x或者y
+           [ab] : 或者a或b
+           [^ab]: 代表非ab以外的字符
+           [a-z]: 代表 a-z之间的任意字符
+           [^a-z] : 除了小写字母
+           ()   :代表分组和提升优先级的意思
+           (?:) : 只匹配  不捕获
+           (?=) : 正向肯定预查
+           (?!) : 正向否定预查 
+
+        量词元字符:一般都是用在了其他元字符的后边
+          ? : 代表 前边的字符出现0或1次
+          + : 代表前边的字符出现 1或多次
+          * : 代表前边的字符出现0或多次
+          {n}: 代表前边的字符出现 n次
+          {n,m} :代表前边的字符出现n到m次
+          {n,} : 代表前边的字符出现n到多次
+
+        修饰符:
+         i: 忽略大小写 ignoreCase
+         m: 多行匹配  mutiline
+         g: 全局匹配 global
+    */
+
+    var ary = ['qqq','www','eee'];
+
+    var arr = ary.map(item=>new RegExp(item));
+    console.log(arr);
+</script>
+<script src="./js/1.js"></script>

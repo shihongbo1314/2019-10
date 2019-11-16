@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #dialog{
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            top:0;
+            left: 0;
+        }
+        .center{
+            width: 400px;
+            background: #fff;
+            padding: 20px;
+            /* position: relative;
+            margin: auto;
+            top: 50%;
+            transform: translateY(-50%); */
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            max-height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <ul id="target">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+    <button id="btn">按钮</button>
+
+    <!-- <div id="dialog" >
+            <div class="center">
+                    你好
+                    <div>
+                            <button >取消</button>
+                            <button>确定</button>
+                    </div>
+                    
+                </div>
+        </div> -->
+</body>
+
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    var box = document.getElementById('box');
+    let li = document.createElement('li');
+    li.innerHTML = 4;
+    // box.appendChild(li);
+    // box.insertBefore(li,box.querySelector('li:nth-child(2)'));
+    // box.insetBefore(newEle,oldEle);; 在oldEle元素前边插入一个newEle ；
+    Element.prototype.insertAfter = insertAfter;
+
+    function insertAfter(newEle, originEle) {
+        //=>newEle:新插入的元素
+        //=>originEle:指定的老元素
+        let next = originEle.nextElementSibling;
+
+        if (next) {
+            // this.insertBefore(newEle, next)
+            originEle.parentNode.insertBefore(newEle, next)
+        } else {
+            // this.appendChild(newEle)
+            originEle.parentNode.appendChild(newEle)
+        }
+    }
+    box.insertAfter(li, box.querySelector('li:nth-child(1)'));
+
+    // function insertAfter(newEle, originEle) {
+    //     let first = document.createElement(newEle);
+    //     let sender = getElementbyId(originEle);
+    //     originEle.parentNode.insertAfter(first, sender)
+    // }
+
+    var box = document.getElementById('target'),
+	olis = box.querySelectorAll('li');
+    var ary = [...olis].reverse();
+
+    var frag = document.createDocumentFragment();// 文档碎片
+    ary.forEach(item=>{
+        frag.appendChild(item)
+    });
+    box.appendChild(frag);
+
+    $('#btn').on('click',function(){
+        let div = document.createElement('div');
+        div.id = 'dialog';
+        div.innerHTML = `<div class="center">
+                你好
+                <div id='btnBox'>
+                        <button id='cancel'>取消</button>
+                        <button id='sure'>确定</button>
+                </div>
+                
+            </div>`;
+        document.body.appendChild(div);   
+        var $btns = $('#btnBox button');
+        $btns.on('click',function(){
+            document.body.removeChild(div);   
+        })
+    });
+    
+
+
+    // call 继承
+
+    function parent(){
+        this.q = 12;
+        this.w = 15;
+    }
+    function child(){
+        parent.call(this);
+        this.e = 14;
+    }
+    // child.prototype = new parent();
+
+    let obj ={};
+    child.prototype = 
+    new Child();
+</script>

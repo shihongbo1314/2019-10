@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        [v-cloak] {}
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <input type="text" v-model="name">
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    // vue 是双向数据绑定 单项数据流
+    /* 
+        v-model
+        v-text
+        v-html
+        v-once
+        v-cloak
+        v-pre
+    */
+    /* 
+        Object.defineProperty(对象，属性名，{get(){},set(){}})
+    */
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            obj: {
+                a: 0
+            }
+        }
+    });
+    let obj = {
+        aaa: 123
+    }; // MVVM双向数据绑定
+    Object.defineProperty(obj, 'qqq', {
+        // 监听的是对象中的一个个属性
+        get() {
+            return 666;
+        },
+        set(val) {
+
+        }
+    });
+    let o = new Proxy(obj, {
+        // 整个对象的监听
+        get(tar, key) {
+            console.log(tar, key);
+            return 999;
+        },
+        set(tar, key, val) {
+            console.log(tar, key, val);
+            tar[key] = val;
+        }
+    });
+    // 给对象新增属性的时候 不会触发试图的更新
+    // 1、一开始就写好 undefined值在试图是不会展示出来的
+    // 2、整个对象的替换：
+    // 3、vm.$set(vm.obj,属性名,属性值)
+    // 4、增加一个无关变量，每次修改完数据，更新这个变量
+</script>

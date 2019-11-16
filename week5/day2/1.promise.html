@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // let p = new Promise(function (res, rej) {
+    //     setTimeout(() => {
+    //         console.log(qqq)
+    //     }, 2000);
+    // }).then(function (data) {
+    //      console.log(1)
+    // }, function (error) {
+    //     console.log(0)
+    // }).catch((err)=>{
+    //     console.log(666,arr)
+    // }).finally(()=>{
+    //     // 不管是成功还是失败  都要执行的代码  我们可以放到这个函数中
+    // })
+    // then   catch   finally   这三个方法都在promise的原型上;
+    // all   race   resolve   reject
+
+
+    var p1 = new Promise(function(res,rej){
+        setTimeout(() => {
+            res(1111)
+        }, 1000);
+    })
+    var p2 = new Promise(function(res,rej){
+        setTimeout(() => {
+            res(2222)
+        }, 2000);
+    })
+    var p3 = new Promise(function(res,rej){
+        setTimeout(() => {
+            res(3333)
+        }, 4000);
+    });
+    // 所有的都成功  才会走成功的回调函数,只要有一个失败  就是走对应的失败函数
+    Promise.all([p1,p2,p3]).then((data)=>{
+        console.log('data',data)
+    }),(err)=>{
+        console.log('err',err)
+    };
+    Promise.allSettled([p1,p2,p3]).then((data)=>{
+        console.log(data)
+    });
+    Promise.race([p1,p2,p3]).then((data)=>{
+        console.log('sucess',data)
+    },(err)=>{
+        console.log('fail',err)
+    });
+    Promise.resolve(333).then((data)=>{
+        console.log(data)
+    });
+    Promise.reject(444).then((data)=>{
+        console.log(data)
+    }).catch((arr)=>{
+        console.log(err)
+    })
+</script>

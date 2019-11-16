@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+     // in 某个属性是否属于某个对象  某个对象.某个属性
+     var obj = {
+        a: undefined,
+        b: 12
+    }
+    // obj.a undefinedo0
+    // obj.c undefined
+
+    'toString' in obj; // true
+    obj.hasOwnProperty('toString'); // false
+    ''.hasOwnProperty('length') // true
+
+    Object.prototype.hasPubProperty = function (key) {
+        if (key in this && !this.hasOwnProperty(key)) return true;
+        return false;
+    }
+    
+    //plus minus
+    var n = 2;
+    n.plus(5).minus(3).puls(10);//2+5-3+10
+    Number.prototype.plus = function(a){
+        return this + a ;
+    }
+    Number.prototype.minus = function(a){
+        return this - a;
+    }
+    // 迭代数组  forEach  map  for  for in
+    var ary = [1, 2, 3, 4, 5];
+    ary.qqq = 123;
+    Array.prototype.a = 100;
+    Object.prototype.b = 200;
+    for (var k in ary) {
+        //会把所有能调用到的自己添加的属性 全部能获取到;
+        console.log(k)
+    }
+
+
+</script>

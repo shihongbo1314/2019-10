@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+     let ws = new WebSocket('wss://123.207.167.163:9010/ajaxchattest');
+     ws.onopen = function(e){
+         console.log('链接已经打通',e)
+     }
+     ws.onmessage = function(e){
+         console.log('收到后台推送的消息')
+     }
+     ws.onerror = function(e){
+         console.log('链接出现错误',e)
+     }
+     ws.onclose = function(e){
+         console.log('链接已关闭',e)
+     }
+     // ws.send(要发给后台的信息)
+     // ws.close()主动关闭 ws链接
+
+
+     //socket.io  它是对于websocket的一个封装
+</script>

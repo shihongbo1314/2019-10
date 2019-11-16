@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   /* 
+      变量提升(声)
+        在代码执行之前，JS会把代码中带var的和 带 function 的提前声明名
+        
+   
+    */
+    btns.forEach((item,index)=>{
+          item.onclick = function(){
+              alert(index);
+          }
+    })
+</script>

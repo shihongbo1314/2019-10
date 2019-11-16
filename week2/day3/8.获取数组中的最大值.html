@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var ary = [234,25,4,,5,99,9,9,5,];
+    Math.max(1,2,3,4,5,6,);
+    Math.max(...ary);
+    Math.max.apply(Math,ary);//利用了apply 可以把集合散乱的传给前边的函数
+    ary.sort((a,b)=>b-a)[0];
+
+    // 实现字符串排序
+    var str = 'sdabkjbadnkfdngnfknlggdgjkdl';
+    var arr = str.split('');//把字符串拆成数组
+    console.log(arr);
+    arr.sort((a,b)=>{
+        return a.localeCompare(b)
+    })
+    console.log(arr.join(''));
+    // 名字排序
+    var ary =[
+        {
+            name:'小红',
+            age:10
+        },
+        {
+            name:'小话',
+            age:103
+        },
+        {
+            name:'小名',
+            age:1
+        },
+        {
+            name:'小里',
+            age:120
+        },
+    ]
+    ary.sort((a,b)=>{
+        return a.name.localeCompare(b.name)*(-1)
+    })
+    console.log(ary)
+</script>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+     <button id="btn">按钮1</button>
+     <button id="btn1">按钮2</button>
+</body>
+</html>
+<script>
+    function fn() {
+        console.log(arguments);
+        console.log(this);
+        console.log('----------------------------')
+    }
+    var obj = { q: 12 };
+    var res = fn.call(obj,1,2,3)// res undefined
+    var res2 = fn.bind(obj,1,2,3)// res  是一个新函数
+    // 新函数执行的时候有什么特点 ,里边的this是obj; 默认参数是1,2,3; 返回结果是fn的结果
+
+    btn.onclick = fn;
+    btn2.onclick = res2;
+    Function.prototype.mybind =function(context=window,...arg){
+        //  this---> fn
+        var _this= this; // _this-->fn
+           return function(...arr){
+               return _this.apply(context,arg.concat(arr))
+               return _this.apply(context,[...arg,...arr])
+           }
+    }
+    var res3 = fn.myBind(obj,1,2,3)
+
+    /* 
+        
+        this:
+        箭头函数中的this 是上级作用域中的this 箭头函数是把this 和 arguments 当作普通变量对待
+        new执行时，函数中的this是当前创造的那个实例
+        定时器，自执行函数中的this是window
+        事件绑定是绑定的那个元素
+        其他看点 没点都是window
+    */
+    
+     
+     
+</script>

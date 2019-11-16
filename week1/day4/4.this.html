@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+      this  普通函数内部的关键字,代表函数的执行主体;
+      箭头函数中没有this;(this,arguments普通变量)
+      自执行函数中的this是 window
+      定时器函数中的this 是window
+      事件绑定中的this 是当前绑定的元素
+      其他的看点,函数执行点前面是谁,函数中的this就是谁,没点就是window
+    
+    
+     */
+    !function () {
+        console.log(this)
+    }();
+    ~function () {
+        console.log(this)
+    }();
+    (function () {
+        console.log(this)
+    })();
+    btn.onclick = function () {
+        //this是绑定的元素
+        ~function () {
+            console.log(this)
+        }();
+        (()=>{
+            console.log(this)
+         });
+    }
+
+
+    var fn = function(){
+        console.log(this)
+    }
+    var obj = {
+        f:fn
+    }
+    var obj = [fn];
+    btn.onclick = fn;//btn
+    fn();//window
+    obj.f()//obj
+    ary[0]()//ary
+
+
+
+    var fn =()=>{
+        //对于箭头函数来说,this和arguments都是普通变量,需要找上级作用域中(是window
+        
+        console.log(this)
+    var obj = {
+        f:fn
+    }
+    }
+    var obj = [fn];
+    btn.onclick = fn;//btn
+    fn();//window
+    obj.f()//obj
+    ary[0]()//ary
+</script>

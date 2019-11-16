@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // xxx instanceof xxx2 : xxx 到基类的原型链上 有没有 xxx2 的原型
+    // 所有的引用数据类型  instanceof  Object  都是true
+    // 所有的值类型  instanceof  任意  都是false;
+    function myinstance(temp, classN) {
+        //temp通过__proto__向上查的时候
+        //若有某次的 __proto__=== calssN.prototype返回true
+        // 当某次的__proto__=== null; 这时返回false;
+        // temp.__proto__  classN.prototype
+        let str = typeof temp;
+        // 不是对象 也不是函数 证明是 值类型  这时的return  false;
+        if (str !== 'object' && str !== 'function') return true;
+        var left = temp.__proto__,
+            right = classN.prototype;
+        //if(left===right)return true;省略
+        while (left) {
+            if (left === right) return true;
+            left = left.__proto__
+        }
+        return false
+    }
+    function instance_of(L, R) {
+        //L 表示左表达式，R 表示右表达式
+        var O = R.prototype; // 取 R 的显示原型
+        L = L.__proto__; // 取 L 的隐式原型
+        while (true) {
+            if (L === null) return false;
+            if (O === L)
+                // 这里重点：当 O 严格等于 L 时，返回 true
+                return true;
+            L = L.__proto__;
+        }
+    }
+
+    [] instanceof Array;//true
+    [] instanceof Object;//true
+    [] instanceof Number;//false
+    1 instanceof Number;//false
+
+    myinstance([], Number)// false
+</script>

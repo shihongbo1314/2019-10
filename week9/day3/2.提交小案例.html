@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        select {
+            width: 200px;
+            height: 50px;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <input type="text" v-model="username">
+        <div>
+            <input type="radio" v-model="sex" value="0">男
+            <input type="radio" v-model="sex" value="1">女
+        </div>
+        <h2>选择课程</h2>
+        <div>
+            <input type="checkbox" value="html" v-model="course">html
+            <input type="checkbox" value="css" v-model="course">css
+            <input type="checkbox" value="js" v-model="course">js
+            <input type="checkbox" value="node" v-model="course">node
+            <input type="checkbox" value="vue" v-model="course">vue
+            <input type="checkbox" value="react" v-model="course">react
+            <input type="checkbox" value="wx" v-model="course">小程序
+        </div>
+        <h2>爱好</h2>
+        <div>
+            <select v-model="hobby">
+                <option :value="item.val" v-for="item in ary">{{item.text}}</option>
+            </select>
+        </div>
+        <div>
+            <h1>手机号</h1>
+            <input type="text" v-model="phone">
+        </div>
+
+        <button @click="submit">提交</button>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            ary:[{val:'eat',text:'吃'},{val:'play',text:'玩'},{val:'sleep',text:'睡'},{val:'study',text:'学习'}],
+            username: '',
+            course: [],
+            sex: '0',
+            hobby: '',
+            phone: ''
+        },
+        methods:{
+            submit(){
+                let obj = {};
+                if(!this.username || !this.phone){
+                    alert('必填项不能为空');
+                    return;
+                }
+                obj.username = this.username;
+                obj.course = this.course;
+                obj.sex = this.sex;
+                obj.hobby = this.hobby;
+                obj.phone = this.phone;
+                fetch('http://127.0.0.1:8080/add/userinfo',{
+                    method:'post',
+                    body:JSON.stringify(obj)
+                }).then(response=>response.json()).then((data)=>{
+                    console.log(data)
+                })
+                
+                
+
+            }
+        }
+    })
+</script>

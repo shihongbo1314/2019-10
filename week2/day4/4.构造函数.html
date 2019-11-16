@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+     function Person(name,age){
+         this.name = name;
+         this.age = age;
+         this.eat = function(){
+
+         }
+         this.play = function(){
+
+         }
+         return 123;
+     }
+     var p = new Person('珠峰',10);
+     // new 执行: 开辟一个作用域 形参赋值  变量提升  开辟一个堆内存 ,把this指向这个堆内存;
+     // 代码执行 ; 默认return this
+
+     function myNew(classN,...arg){
+           var obj = {};
+           obj.__proto__ = Person.prototype;
+           var res = Person.call(obj,...arg)
+           return typeof res === 'object' ? res : obj;
+     }
+     var p2 = myNew(Person,'zf',10)
+</script>

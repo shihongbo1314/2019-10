@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="inp">
+</body>
+</html>
+<script>
+    let n = 0;
+    inp.oninput = function(){
+        let str = this.value;
+        if(str.length >= n){
+            n = str.length
+        if(str.length == 3 || str.length == 8){
+            str = str + ' ';
+        }
+        if(str.length > 13){
+            str = str.slice(0,13);
+            // 验证手机号码
+            var reg = /^1[3-9]\d \d{4} \d{4}$/;
+            if(!reg.test(str)){
+                alert('不合法')
+            }
+            var reg = /^1[3-9]\d{9}$/;
+            let s = str.replace(/ +/g,'');
+            if(reg.test(s)){
+                alert('不合法')
+            }
+        }
+        this.value = str;
+        }else{
+           n = str.length;
+        }
+    }
+</script>
+<script>
+   /* 
+        正则
+        var reg = /\d/g
+        var reg = new RegExp('\\d','g');
+
+        匹配  test
+        捕获  exec  捕获的贪婪性  在量词元字符后边加一个?  ;懒惰性加全局修饰符g
+
+   
+   
+   */
+   var str = '140224199606290617'
+   var reg = /\d{6}(\d{4})(\d{2})(\d{2})\d{4}/
+</script>

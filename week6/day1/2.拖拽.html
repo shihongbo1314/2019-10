@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            height: 2000px;
+        }
+        #box{
+            width: 600px;
+            height: 400px;
+            margin: auto;
+            overflow: hidden;
+            border: 1px solid saddlebrown;
+        }
+        img{
+            width: 100%;
+            user-select: none;
+        }
+        .lit_box{
+            width: 200px;
+            height: 150px;
+            position: fixed;
+            right: 0;
+            top: 50%;
+            /* margin-top: -75px; */
+            cursor:move;
+            border: 1px solid saddlebrown;
+            overflow: hidden;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <img src="../../week5/day3/img/big.jpg" alt="">
+    </div>
+    <div class="lit_box" id="lit_box">
+        <img src="../../week5/day3/img/big.jpg" alt="" draggable="false">
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="drag.js"></script>
+<script>
+    function judge(){
+        let st = document.documentElement.scrollTop;
+        let ch = $('#box').outerHeight();
+        let ot = $('#box').offset().top;
+        if(ch + ot <= st){
+            $('.lit_box').show();
+        }else{
+            $('.lit_box').hide();
+        }
+    }
+    // judge();
+    window.onscroll = judge;
+    let w = document.documentElement.clientWidth || document.body.clientWidth,
+        h = document.documentElement.clientHeight  || document.body.clientHeight;
+    new Drag('lit_box',{
+        range:[0,0,w-202,h-152]
+    });
+</script>

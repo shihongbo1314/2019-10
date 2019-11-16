@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+            .st {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                cursor: move;
+                background: rgb(77, 154, 173);
+                position: absolute;
+                user-select: none;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div id="box" class="st">1</div>
+        <div id="box2" class="st">2</div>
+        <div id="box3" class="st">3</div>
+        <div id="box4" class="st">4</div>
+    </body>
+
+</html>
+<script>
+    // var box = document.getElementById('box');
+    // // 鼠标按下  决定了盒子可以跟随鼠标移动  鼠标抬起  盒子就停止跟随
+    
+    // function move(e) {
+    //    box.style.left = e.pageX - 100 + 'px';
+    //    box.style.top = e.pageY -100 + 'px';
+    // }
+    // box.addEventListener('mousedown', function (e) {
+    //     // 鼠标按下时  记录鼠标在盒子上的初始位置; 记录到盒子自己的属性上
+    //     let o = offset(this);
+    //     this.sx = e.pageX - o.l;
+    //     this.sx = e.pageY - o.t;// 鼠标在盒子上的初始位置
+    //     // box.addEventListener('mousemove',move, false);
+    //     // 鼠标丢失的问题 ,我们可以通过给document绑定事件来解决
+    //     this.fn = move.bind(this)
+    //     document.addEventListener('mousemove',this.fn,false)//保证move中的this是box
+    // }, false);
+
+    // box.addEventListener('mouseup', function (e) {
+    //     document.removeEventListener('mousemove',this.fn, false);
+    // }, false);
+    
+
+
+
+    // function offset(ele){
+    //     let l = ele.offsetLeft,
+    //         t = ele.offsetTop;
+    //     let temp = ele.offsetParent;
+    //     while(temp){
+    //         l += temp.offsetLeft + temp.clientLeft;
+    //         t += temp.offsetTop + temp.clientTop;
+    //         temp = temp.offsetParent;
+    //     }
+    //     return {
+    //         l,t
+    //     }
+    // }
+
+
+
+
+
+
+   // 面向对象写法
+   function Drag(id) {
+        this.box = document.getElementById(id);
+        // 鼠标按下 决定了盒子可以跟随鼠标移动   鼠标抬起  盒子就停止跟随
+        // var fn = null;
+        var _this = this;
+        this.box.addEventListener('mousedown', function (e) {
+            // 鼠标按下时 记录  鼠标在盒子上的初始位置； 记录到盒子自己的属性上
+            let o = _this.offset(this);
+            this.sx = e.pageX - o.l;
+            this.sy = e.pageY - o.t; // 鼠标在盒子上的初始位置；
+            // this.addEventListener('mousemove',move,false)
+            // 鼠标丢失的问题 我们可以通过给document绑定事件来解决
+            _this.fn = _this.move.bind(this)
+            document.addEventListener('mousemove', _this.fn, false); //move.bind(this) move中的this 是box
+        }, false);
+
+        this.box.addEventListener('mouseup', function (e) {
+            // box.removeEventListener('mousemove',move,false)
+            document.removeEventListener('mousemove', _this.fn, false)
+        }, false);
+    }
+    Drag.prototype.move = function (e) {
+        // this是当前的实例
+        this.style.left = e.pageX - this.sx + 'px';
+        this.style.top = e.pageY - this.sy + 'px';
+    }
+    Drag.prototype.offset = function (ele) {
+        let l = ele.offsetLeft,
+            t = ele.offsetTop;
+        let temp = ele.offsetParent;
+        while (temp) {
+            l += temp.offsetLeft + temp.clientLeft;
+            t += temp.offsetTop + temp.clientTop;
+            temp = temp.offsetParent;
+        }
+        return {
+            l,
+            t
+        }
+    }
+    new Drag('box');
+    
+    new Drag('box2');
+    
+    new Drag('box3');
+    
+    new Drag('box4');
+</script>

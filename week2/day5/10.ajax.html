@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    
+</body>
+</html>
+<script>
+     // ajax 是前端 向后端 要数据的一种方式;
+     var xhr = new XMLHttpRequest();// 创造ajax实例;
+     xhr.open('get','./data.json',false);//确定请求路径
+     xhr.onreadystatechange = function(){
+         if(xhr.readyState == 4 && xhr.status == 200){
+             console.log(JSON.parse(xhr.response))
+         }
+     }
+     xhr.send();//发送请求
+</script>

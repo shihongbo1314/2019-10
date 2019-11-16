@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+     function Person(name,age){
+         this.name = name;
+         this.age = age;
+        
+     }
+     Person.prototype.eat = function(){};
+     Person.prototype.play = function(){};
+     var p = new Person();
+
+     // 原型链: 属性的查找机制;实例通过__proto__向上级原型查找;
+
+    /* 
+      每一个类(函数)都有一个默认的prototype属性,指向自己的原型对象
+      每一个对象(实例) 都有一个默认的__proto__属性,指向所属类的原型对象
+      每一个默认的原型对象 都有一个 constructor属性,指向对应的构造函数本身 
+    */
+</script>

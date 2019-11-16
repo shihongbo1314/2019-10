@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        select {
+            width: 200px;
+            height: 50px;
+            font-size: 30px;
+        }
+    </style>
+    <link rel="stylesheet" href="../node_modules/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <!-- <input type="text" v-model="username"> -->
+        <el-input v-model="username" placeholder="请输入用户名"></el-input>
+        <div>
+            <!-- <input type="radio" v-model="sex" value="0">男
+            <input type="radio" v-model="sex" value="1">女 -->
+            <el-radio v-model="sex" label="1">男</el-radio>
+            <el-radio v-model="sex" label="2">女</el-radio>
+        </div>
+        <h2>选择课程</h2>
+        <div>
+            <!-- <input type="checkbox" value="html" v-model="course">html
+            <input type="checkbox" value="css" v-model="course">css
+            <input type="checkbox" value="js" v-model="course">js
+            <input type="checkbox" value="node" v-model="course">node
+            <input type="checkbox" value="vue" v-model="course">vue
+            <input type="checkbox" value="react" v-model="course">react
+            <input type="checkbox" value="wx" v-model="course">小程序 -->
+
+            <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange">全选
+            </el-checkbox>
+            <div style="margin: 15px 0;"></div>
+            <el-checkbox-group v-model="checkedCities" @change="handleCheckedCitiesChange">
+                <el-checkbox v-for="city in cities" :label="city" :key="city">{{city}}</el-checkbox>
+            </el-checkbox-group>
+        </div>
+        <h2>爱好</h2>
+        <div>
+            <!-- <select v-model="hobby">
+                <option :value="item.val" v-for="item in ary">{{item.text}}</option>
+            </select> -->
+            <el-select v-model="value" placeholder="请选择">
+                <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value">
+                </el-option>
+            </el-select>
+        </div>
+        <div>
+            <h1>手机号</h1>
+            <el-input v-model="phone" placeholder="请输入手机号"></el-input>
+        </div>
+
+        <!-- <button @click="submit">提交</button> -->
+        <el-button :plain="true" @click="submit" type="primary">提交</el-button>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/element-ui/lib/index.js"></script>
+<script>
+    const cityOptions = ['css', 'js', 'node', 'html', 'vue', 'react', '小程序'];
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            ary: [{ val: 'eat', text: '吃' }, { val: 'play', text: '玩' }, { val: 'sleep', text: '睡' }, { val: 'study', text: '学习' }],
+            checkAll: false,
+            username: '',
+            course: [],
+            sex: '0',
+            hobby: '',
+            phone: '',
+            checkAll: false,
+            checkedCities: ['css'],
+            cities: cityOptions,
+            isIndeterminate: true,
+            options: [{
+                value: '选项1',
+                label: '吃'
+            }, {
+                value: '选项2',
+                label: '玩'
+            }, {
+                value: '选项3',
+                label: '睡'
+            }, {
+                value: '选项4',
+                label: '学习'
+            },
+
+            ]
+        },
+        methods: {
+            submit() {
+                let obj = {};
+                if (!this.username || !this.phone) {
+                    alert('必填项不能为空');
+                    return;
+                }
+                obj.username = this.username;
+                obj.course = this.course;
+                obj.sex = this.sex;
+                obj.hobby = this.hobby;
+                obj.phone = this.phone;
+                fetch('http://127.0.0.1:8080/add/userinfo', {
+                    method: 'post',
+                    body: JSON.stringify(obj)
+                }).then(response => response.json()).then((data) => {
+                    console.log(data)
+                   
+                });
+            },
+            handleCheckAllChange(val) {
+                this.checkedCities = val ? cityOptions : [];
+                this.isIndeterminate = false;
+            },
+            handleCheckedCitiesChange(value) {
+                let checkedCount = value.length;
+                this.checkAll = checkedCount === this.cities.length;
+                this.isIndeterminate = checkedCount > 0 && checkedCount < this.cities.length;
+            }
+        }
+    })
+</script>

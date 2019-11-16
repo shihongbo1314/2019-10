@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   // apply的目的跟call 一样;但是区别于第二个参数;第二个参数是一个数组或者类数组
+   // 虽然第二个参数是一个集合,但是 函数执行时,参数还是被散乱的传出去的;不是一个集合整个传的
+   function fn(){
+        console.log([...arguments])
+        console.log(this)
+    }
+    var obj = {
+        a :12,
+        b :13,
+    }
+    fn.call(obj,5,6,7,8);
+    fn.apply(obj,[5,6,7,8]);
+
+    // 实现一个myapply的方法 ;功能等同于 apply
+    Function.prototype.myapply = function(context,ary){
+        context = context || window
+        ary  = ary || [];
+        var key =Symbol();
+        conntext[key] = this;
+        context[key](...ary);
+        delete context[key];
+    }
+    fn.myapply(obj,6,6,6);
+
+    // 实现一个mynew的方法;功能等同于new
+    function myNew(...arg){
+        //person,name,age
+        var obj = {};
+        var Constructor = arg.shift();//第一步 删除了 Person; 第二步把Person赋给了 变量
+        obj.__proto__=Constructor.prototype;
+        var res = Constructor.call(obj,...arg)
+        return typeof res === 'object' ? res: obj;
+    }
+    var p2 = myNew(Person,'珠峰',10)
+
+    
+</script>

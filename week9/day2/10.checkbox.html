@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <h2>水果栏目</h2>
+        <input type="checkbox" id="all" v-model ="all" @change="fn"><label for="all">全选</label>
+        <br>
+        ---------------------------------------------------------------------
+        <br>
+       <!--  <input type="checkbox" id="apple" value="1" v-model="checklist"><label for="apple">苹果</label>
+        <input type="checkbox" id="banana" value="2" v-model="checklist"><label for="banana">香蕉</label>
+        <input type="checkbox" id="pear" value="3" v-model="checklist"><label for="pear">梨</label>
+        <input type="checkbox" id="orange" value="4" v-model="checklist"><label for="orange">橘子</label>
+        <input type="checkbox" id="peach" value="5" v-model="checklist"><label for="peach">桃子</label> -->
+        <!-- 多个checkbox 绑定同一个数组;这时数组中的内容就是你选中的 checkbox的value值 -->
+        
+       <template v-for="v in backAry" >
+            <input type="checkbox" v-bind:id="v" :value="v" v-model="checklist">
+            <label :for="v">{{v}}</label>
+       </template>
+       <!-- template 是vue内置的一个标签,可以避免增加无用标签的这种毛病 -->
+    </div>
+</body>
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    //v-bind:专门用来绑定行内属性的用的 简写是  :
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            name:"珠峰",
+            backAry:['apple','banana','pear','orange','peach'],
+            checklist:[],
+            all:false
+        },
+        methods:{
+           fn(){
+            console.log(this.all)
+            if(this.all){
+                this.checklist = [1,2,3,4,5]
+            }else{
+                this.checklist= [];
+            }
+        } 
+        }
+        
+    });
+</script>

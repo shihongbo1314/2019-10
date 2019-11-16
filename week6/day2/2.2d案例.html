@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box{
+            width: 400px;
+            height: 400px;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .big_box li{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 400px;
+            height: 400px;
+            display:none;
+        }
+        /* .big_box li:nth-child(1){
+            display: block;
+        } */
+        .big_box  li:target{
+            /* 当前处于目标阶段的li会有当前的样式 */
+            display: block;
+            animation: move1 1s linear;
+        }
+        .lit_box{
+            position: absolute;
+            bottom:0px;
+            width: 100%;
+            height:80px;
+            text-align: center;
+            background: rgba(255,255,255,0.5);
+            padding-top: 5px;
+            box-sizing: border-box;
+        }
+        .lit_box li{
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            border:10px solid rgba(0,0,0,0.6);
+            box-sizing: border-box;
+        }
+
+
+        @keyframes move1 {
+            0%{
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            /* 50%{
+                transform: scale(1.2) rotate(180deg);
+            } */
+            100%{
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul class="big_box">
+            <li id="img1">
+                <img src="./img/1.jpg" alt="">
+            </li>
+            <li id="img2">
+                <img src="./img/2.jpg" alt="">
+            </li>
+            <li id="img3">
+                <img src="./img/3.jpg" alt="">
+            </li>
+            <li id="img4">
+                <img src="./img/4.jpg" alt="">
+            </li>
+        </ul>
+        <ul class="lit_box">
+            <li>
+                <a href="#img1">
+                    <img src="./img/1.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#img2">
+                    <img src="./img/2.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#img3">
+                    <img src="./img/3.jpg" alt="">
+                </a>
+            </li>
+            <li>
+                <a href="#img4">
+                    <img src="./img/4.jpg" alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

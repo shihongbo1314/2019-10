@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    let p1 = new Promise(function(res,rej){
+        setTimeout(()=>{
+            res('error')
+            console.log('p1')
+        },2000);
+    });
+    let p2 = new Promise(function(res,rej){
+        setTimeout(()=>{
+            res('success')
+            console.log('p2')
+        },4000);
+    });
+    let p3 = new Promise(function(res,rej){
+        setTimeout(()=>{
+            res('success2')
+            console.log('p3')
+        },6000);
+    });
+
+    async function  fn() {
+        let res1 = await p1;
+        console.log(res1);
+        let res2 = await p2;
+        console.log(res2);
+        let res3 = await p3;
+        console.log(res3)
+        // let res4 =await setTimeout(()=>{
+        //     console.log(111)
+        // },6000)
+    }
+    fn();
+</script>

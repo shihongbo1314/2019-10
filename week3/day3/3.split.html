@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 使用split可以结合正则使用
+    var str = 'a-3_34+regfhdh=ggdf?fgdg'
+    var str2 = '1+2+3+4';
+    console.log(str2.split('+'))
+    console.log(str2.split(''))
+    console.log(str2.split(/\d/));
+    console.log(str.split(/[-_+=?]/));
+    console.log(str.split(/[^a-zA-Z\d]/))
+</script>

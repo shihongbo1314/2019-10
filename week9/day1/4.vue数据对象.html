@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        {{obj}}
+        <span style="display: none;">{{t}}</span>
+    </div>
+</body>
+</html>
+<script>
+    // 改变vue中的数据 能触发视图的更新 前提是该数据有set和get
+    // 若没有get和set更改数据是不会触发试图的更新,但是数据是改了的
+    // 给对象新增属性时,vue不会触发视图的更新
+    // 1.一开始就在data中写上对应的属性
+    // 2.整个对象的替换,替换后的对象中的每一个属性 都会被监听
+    // 3.通过$set(对象,属性名,属性值)
+    // 4.初始状态下 创建一个无关变量,在新增对象的属性时,我们可以去更新刚才的无关变量
+
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            // data中的属性 最终都是挂载到了 当前的这个实例身上
+            name:"珠峰",
+            obj:{
+                a:12,
+                // c:undefined
+
+            },
+            t:0
+        }
+    });
+    // vm.obj.c = 123;
+    // vm.obj = Object.assign({b:234},vm.obj);//返回值是合并后的原有对象
+    // 1.使用深拷贝  返回一个新的地址
+    // 2.更换参数的两个位置
+
+
+    //  vm.$set(vm.obj,'b',123456);
+     vm.obj.b = {ss:1234}//...
+     vm.t = Math.random();
+</script>

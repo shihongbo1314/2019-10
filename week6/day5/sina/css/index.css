@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.lt {
+  float: left;
+}
+.rt {
+  float: right;
+}
+header {
+  background: #64c3e0;
+  padding: 3vw;
+}
+header .logo_box {
+  color: #fff;
+  overflow: hidden;
+  height: 10vw;
+  line-height: 10vw;
+  position: relative;
+}
+header .logo_box .logo {
+  font-size: 70px;
+  display: inline-block;
+  height: 10vw;
+  line-height: 10vw;
+}
+header .logo_box .tab {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-size: 13px;
+  padding: 0 4vw;
+  background: rgba(0, 0, 0, 0.4);
+  height: 7vw;
+  line-height: 7vw;
+  border-radius: 7vw;
+}
+header .logo_box .tab .lit {
+  color: #333333;
+  font-size: 12px;
+}
+header .logo_box .tool_box {
+  font-size: 17px;
+}
+header .logo_box .tool_box .icon_user {
+  padding: 0 4vw;
+}
+header nav {
+  overflow: hidden;
+}
+header ul {
+  overflow: hidden;
+}
+header ul li {
+  display: block;
+  float: left;
+  width: 10vw;
+  text-align: center;
+  margin: 1vw 4vw 1vw 0vw;
+}
+header ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+header ul li:nth-child(7n) {
+  margin-right: 0;
+}
+.banner {
+  padding: 3vw;
+  height: 60vw;
+}
+.banner .swiper-slide {
+  overflow: hidden;
+  height: 60vw;
+  background: #ccc;
+}
+.banner .swiper-slide img {
+  height: 100%;
+}
+.banner .swiper-slide p {
+  position: relative;
+  height: 10vw;
+  line-height: 10vw;
+  padding: 0 4vw;
+  color: #fff;
+  top: -10vw;
+  background: rgba(0, 0, 0, 0.4);
+}
+.banner .swiper-pagination {
+  text-align: right;
+  color: #fff;
+  padding-right: 5vw;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+.banner .swiper-pagination span:nth-child(1) {
+  font-size: 20px;
+}
+.listBox .list {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  width: 94vw;
+  margin: auto;
+  padding: 3vw 0;
+  position: relative;
+  min-height: 20vw;
+}
+.listBox .list .textBox {
+  flex: 1;
+}
+.listBox .list .textBox .commentBox {
+  position: absolute;
+  bottom: 3vw;
+  left: 2vw;
+  font-size: 13px;
+  color: #bbbbbb;
+}
+.listBox .list .imgBox {
+  width: 30vw;
+  height: 20vw;
+  overflow: hidden;
+}
+.listBox .list .imgBox img {
+  height: 100%;
+}

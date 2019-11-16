@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./axios.js"></script>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src=''>
+    axios.get('./data.json').then(function (data) {
+        console.log(data)
+    }, function (err) {
+        console.log(err)
+    })
+    axios.post('./data3.json').then(function () {
+        console.log(data)
+    }, (err) => {
+        console.log(err)
+    })
+    axios({
+        method: 'post',
+        url: './data.json',
+        // params:{
+        //     //params是为get准备的
+        //     a:12,
+        //     b:13
+        // }
+        // data:{
+        // data是为post准备的
+        //     q:12,
+        //     b:13
+        // }
+    }).then((data) => {
+        console.log(data)
+    }), (err) => {
+        console.log(err)
+    }
+</script>
+<script>
+    // 跨域: 协议  域名  端口  三者只要有一个不一样;那就是跨域
+    // 同源策略: 浏览器的安全机制;
+    axios.defaults.baseURL = '';
+    axios.post('../data.json', {
+        "userid": "zhangsan",
+        "name": "张三",
+        "orderInDepts": "{1:10, 2:20}",
+        "department": [1, 2],
+        "position": "产品经理",
+        "mobile": "1xxxxxxxxxx",
+        "tel": "xxxx-xxxxxxxx",
+        "workPlace": "",
+        "remark": "",
+        "email": "test@xxx.com",
+        "orgEmail": "test@xxx.com",
+        "jobnumber": "xxx",
+        "isHide": false,
+        "isSenior": false,
+        "extattr": {
+            "爱好": "旅游",
+            "年龄": "24"
+        }
+    }).then((data)=>{
+        console.log(data)
+    }).catch((err)=>{
+        console.log(err)
+    })
+
+</script>

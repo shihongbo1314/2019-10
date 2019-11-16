@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    function fn() {
+        // 函数体
+        console.log(b)
+    }
+    var f = function qqq(){
+        // 函数体
+    }
+    // console.dir(f)
+    var f2 = ()=>{
+        // 函数体
+        // 没有this  和 arguments
+        console.log(arguments)
+    }
+    // 函数的存储过程   开辟一个堆内存  把函数体当作字符串 存储起来
+    // 函数 形参 是定义的时候编写的
+    // 函数 实参 是执行的时候传递的
+    // arguments  实参集合  类数组（元素集合）
+    // return  决定函数的返回值   打断函数的执行
+    // this   函数的执行主体；
+
+    function f3(a,b,...c){
+        console.log(a,b,c)
+    }
+    f3(1,2,3,4,5,6,7)
+
+</script>

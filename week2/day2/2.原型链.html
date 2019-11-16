@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 原型链 --->原型图
+    /* 
+        对于原型图  我们三句话
+        每一个函数都有一个 默认的 prototype属性,指向自己的原型对象
+        每一个实例都有一个 __proto__ 的属性,指向所属类的原型对象
+        每一个默认的原型对象上 都有一个 constructor 属性 指向对应的构造函数本身
+    
+    
+     */
+     function Person(name,age){
+         this.name = name;
+         this.age = age;
+     }
+     Person.prototype.eat = function(){}
+     Person.prototype.play = function(){}
+     var p1 = new Person('小明',10);
+     var p2 = Person('小红',10);
+     // 普通函数的执行过程: 开辟一个作用域, 形参赋值  变量提升  代码从上到下执行;
+     //new 执行时,  开辟一个作用域 形参赋值 开辟一个堆内存,把this的指向改成这个堆内存  然后代码从上向下执行
+
+     
+</script>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    var obj = {
+         name:123,
+         age:23
+    };
+    for(var k in obj){
+
+    }
+    var ary = [1,2,3,4];
+    ary.qqq = 1234;
+    for(var k in ary){
+        console.log(typeof k)
+        console.log(ary[k])
+    }
+
+    // in 是用来查看 某个属性  是否属于某个对象;换句话说 就是 该对象能否调用到该属性;
+    // in只能判断出某个属性是不是属于某个对象,但是不能区分出是否是他的私有属性;
+
+    // hasOwnProperty('xxx')这个属性可以用来查看 xxx 是否是obj的私有属性;
+    //hasOwnProperty 方法在基类的原型上,所以任何数据类型(除去 null undefined)都能调到该方法
+    'name in obj'// obj.name 能调用
+    ary.hasOwnProperty('qqq')
+    obj.hasOwnProperty('toString')
+
+
+    // 自己封装一个hasOwnProperty 用来查看某个属性是否是某个对象的共有属性;
+    // 用法等同于hasOwnProperty
+
+    obj.hasOwnProperty('toString')// true
+    obj.hasOwnProperty('name')// false
+    obj.hasOwnProperty('qwer')// false
+
+    Object.prototype.hasOwnProperty = function(key){
+          //怎么获取obj
+          //属性 通过key这个形参可以获取到
+          // 判断 key 是否是this 的共有属性??
+          //1.得是this的属性
+          //2.不能是私有属性
+          //return (key in this) && !this.hasOwnProperty(key));
+          if((key in this) && !this.hasOwnProperty(key)){
+              return true
+          }
+          return false
+      }
+
+      // hasPubProperty
+      console.log(per1.hasOwnProperty('eat'))//true
+</script>

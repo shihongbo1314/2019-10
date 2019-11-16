@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="手机号" id="inp">
+    <input type="text" placeholder="qq邮箱或163邮箱" id="inp2">
+    <button id="btn">提交</button>
+</body>
+</html>
+<script>
+    // 正则 没有 ^$ 则表示; 只有字符串中有符合正则的部分即可
+    // 有 ^$代表 整个字符串 必须全部满足正则条件;
+
+    // 编写一个有效数
+    // 编写一个正则  可以匹配 有效数字
+    // 可以有 +- 号 ; 可以有小数, 整数部分不能以0开头
+     btn.onclick = function(){
+         var str = inp.value;
+         var reg = /^1[3-9]\d{9}$/;//匹配手机号
+         var reg2 = /^[1-9]\d{4,10}@qq\.com|[a-zA-Z]\w{5,17}@163\.com$/
+         var flag = reg.test(str);
+         flag ? alert('Ok') : alert('Error');
+     }
+     
+</script>

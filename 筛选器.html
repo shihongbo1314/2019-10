@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 600px;
+            margin: 200px auto;
+            border: 1px solid #ccc;
+            font-size: 12px;
+        }
+
+        .top {
+            height: 50px;
+            line-height: 50px;
+            background: aliceblue;
+            border-bottom: 1px solid #ccc;
+            user-select: none;
+        }
+
+        .top span {
+            float: left;
+            margin-left: 20px;
+        }
+
+        .top div {
+            float: left;
+            margin: 0 10px 0 0;
+            border: 1px solid lightblue;
+            height: 25px;
+            line-height: 25px;
+            margin-top: 12px;
+            cursor: pointer;
+            display: none;
+        }
+
+        .top div span {
+            float: left;
+            margin: 0 5px;
+        }
+
+        .top .desc {
+            color: lightblue;
+        }
+
+        .top div .cancel {
+            background: #25a5c3;
+            width: 18px;
+            height: 18px;
+            line-height: 18px;
+            text-align: center;
+            color: #fff;
+            margin-top: 4px;
+            font-size: 15px;
+        }
+
+        .body_box {
+            padding: 0 20px;
+            user-select: none;
+        }
+
+        .body_box li {
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px dashed #999;
+        }
+
+        .body_box li h3 {
+            float: left;
+            color: #ccc;
+            font-size: 15px;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        .body_box li span {
+            float: left;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .body_box li:last-child {
+            border-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="top clearfix">
+            <span>你的选择：</span>
+            <div class="brand clearfix">
+                <!-- <span class="desc">苹果</span>
+                <span class="cancel">X</span> -->
+            </div>
+            <div class="size clearfix">
+                <!-- <span class="desc">3.0英寸以下</span>
+                <span class="cancel">X</span> -->
+            </div>
+            <div class="system clearfix">
+                <!-- <span class="desc">安卓</span>
+                <span class="cancel">X</span> -->
+            </div>
+            <div class="net clearfix">
+                <!-- <span class="desc">联通3G</span>
+                <span class="cancel">X</span> -->
+            </div>
+        </div>
+        <ul class="body_box">
+            <li class="Bra" type="brand">
+                <h3>品牌：</h3>
+                <span>苹果</span>
+                <span>小米</span>
+                <span>锤子</span>
+                <span>魅族</span>
+                <span>华为</span>
+                <span>三星</span>
+                <span>OPPO</span>
+                <span>vivo</span>
+                <span>乐视</span>
+                <span>360</span>
+                <span>中兴</span>
+                <span>索尼</span>
+                </li>
+            <li class="S" type="size">
+                <h3>尺寸：</h3>
+                <span>3.0英寸以下</span>
+                <span>3.0-3.9英寸</span>
+                <span>4.0-4.5英寸</span>
+                <span>4.6-4.9英寸</span>
+                <span>5.0-5.5英寸</span>
+                <span>6.0英寸以上</span>
+               </li>
+            <li class="Sys" type="system">
+                <h3>系统：</h3>
+                <span>安卓</span>
+                <span>苹果</span>
+                <span>微软</span>
+                <span>无</span>
+                <span>其他</span>
+               </li>
+            <li class="Net" type="net">
+                <h3>网络：</h3>
+                <span>联通3G</span>
+                <span>双卡单4G</span>
+                <span>双卡双4G</span>
+                <span>联通4G</span>
+                <span>电信4G</span>
+                <span>移动4G</span>
+               </li>
+        </ul>
+    </div>
+</body>
+
+</html>
+    <script>
+        let ul = document.getElementsByClassName('body_box')[0];
+        let top1 = document.getElementsByClassName('top')[0];
+        ul.onclick = function (e) {
+            e = e || window.event;
+            let tar = e.target || e.srcElement;
+            // 首先 判断 点击的元素是不是 span
+            if (tar.nodeName.toLowerCase() == 'span') {
+                // console.log(tar.parentNode.getAttribute('type'))
+                let type = tar.parentNode.getAttribute('type');
+                let p = document.getElementsByClassName(type)[0];
+                p.innerHTML = `<span class="desc">${tar.innerHTML}</span>
+                            <span class="cancel">X</span>`
+                p.style.display = 'block';
+            }
+        }
+        top1.onclick = function (e) {
+            e = e || window.event;
+            let tar = e.target || e.srcElement;
+            if (tar.className == 'cancel') {
+                tar.parentNode.style.display = 'none';
+            }
+        }
+    </script>

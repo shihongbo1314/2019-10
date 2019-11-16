@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#box{
+    margin: auto;
+    overflow: visible;
+    position: relative;
+    width: 590px;
+    height: 470px;
+}
+.img_box{
+    width: 590px;
+    height: 470px;
+    overflow: hidden;
+}
+.img_box ul{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.img_box ul li{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.img_box ul li img{
+    width: 100%;
+    height: 100%;
+}
+.img_box ul li p{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background: rgba(0,0,0,0.5);
+    text-align: center;
+    color: #fff;
+}
+.tip_box{
+    position: absolute;
+    bottom:-30px;
+    right: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+.tip_box .tip{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: sandybrown;
+}
+.tip_box .tip.current{
+    background: rgb(89, 228, 170)
+}
+.btn_box{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    overflow: hidden;
+    width: 100%;
+}
+.btn_box div{
+    width: 40px;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+}
+.left_btn{
+    float: left;
+}
+.right_btn{
+    float:right;
+}

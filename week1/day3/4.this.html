@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <buttom>1</buttom>
+    <buttom>2</buttom>
+    <buttom>3</buttom>
+    <buttom>4</buttom>
+    <buttom>5</buttom>
+</body>
+
+</html>
+<script>
+    /*
+      this 就是函数的执行主体 
+      箭头函数中没有this和arguments;它是把这两者当作了普通变量去对待了
+      箭头函数中的this是指向了上级作用域的this;
+      定时器中的this也是window
+      
+      事件绑定中的this 就是当前绑定的元素
+      自执行函数中的this 是 window
+      this 的指向是谁,我们可以通过看点的方式来却确定;函数执行  点前边是谁 this 就是谁,
+      没点就是window;
+    */
+    var btns = document.querySelectorAll("buttom");
+    [...btns].forEach(item => {
+        item.onclick = function () {
+            console.log(this)
+        }
+    })
+
+    (function(){
+       console.log(this)
+    }())
+
+    var obj = {
+        age:100,
+        f(){
+            console.log(this.age)
+        },
+        f2:function(){
+
+        },
+        f3:()=>{
+            console.log(this)
+        }
+    }
+    obj.f()
+    var fn = obj.f;
+    fn();
+    var ary = [1,2,3,fn];
+    ary[3]();
+    obj.f3();
+
+
+
+    function fn2(){
+        return ()=>{
+            console.log(arguments)
+        }
+    }
+    fn2(1,2,3,4,5)()
+
+
+
+    setTimeout(function(){
+        console.log(this)//window
+    },2000)
+    
+</script>

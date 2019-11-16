@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  background: url(../交互简历/images/cube-bg.jpg);
+  background-size: cover;
+}
+body #box {
+  width: 5rem;
+  height: 5rem;
+  perspective: 26.66666667rem;
+  position: absolute;
+  top: 6rem;
+  left: 3rem;
+}
+body #box ul {
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(45deg) rotateY(30deg);
+  width: 5rem;
+  height: 5rem;
+}
+body #box ul li {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+}
+body #box ul li img {
+  width: 5rem;
+  height: 5rem;
+}

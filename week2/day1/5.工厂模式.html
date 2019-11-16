@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        工厂模式: 其实就是一个函数;
+    
+    
+     */
+    var per1 ={
+        name:123,
+        age:123,
+        sex:123,
+        eat(){},
+        play(){}
+    }
+    var per1 ={
+        name:123,
+        age:123,
+        sex:123,
+        eat(){},
+        play(){}
+    }
+    var per1 ={
+        name:123,
+        age:123,
+        sex:123,
+        eat(){},
+        play(){}
+    }
+    
+    function factory(name,age,sex){
+        var obj = {
+            name,age,sex,
+            eat(){
+
+            },
+            play(){
+
+            }
+        }
+        return obj;
+    }
+    var per1 = factory('小明',10,1)
+</script>

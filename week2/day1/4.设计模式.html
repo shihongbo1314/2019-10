@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./utlis.js"></script>
+</head>
+<body>
+     
+</body>
+</html>
+<script src="./js/body.js"></script>
+<script src="./js/header.js"></script>
+<script>
+    /* 
+       JS中的几种常见设计模式
+       单例模式
+       工厂模式
+       构造函数模式
+       原型模式
+    
+     */
+     /* 
+       单例模式:其实就是一个对象;可以避免命名冲突的问题,对象名 我们也称为命名空间
+           可以用来封装一些 工具函数 库
+       高级单例模式: 也是一个对象;只是是由一个函数返回的一个单例;
+      */
+      var name = '小明'
+      var age = 10;
+      var sex = '小明'
+      var eat = function(){
+
+      }
+      var play = function(){
+
+      }
+      var per1 = {
+          name:'小明',
+          age:10,
+          sex:1,
+          eat(){},
+          play(){}
+      }
+      var per2 = {
+          name:'小明2',
+          age:102,
+          sex:12,
+          eat(){},
+          play(){}
+      }
+
+      // 高级单例
+      function fn(){
+          var name = '珠峰';
+          var age = 10;
+          function init(){
+              console.log(name,age)
+          }
+          return {
+              init
+          }
+      }
+      var obj = fn();
+      obj.init();
+
+      utlis.f1();
+
+      header().init();//头部初始化
+      body().init();//身体部分初始化
+      function f6(){
+          header.login();
+      }
+</script>

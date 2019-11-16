@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        闭包：
+            不销毁的作用域；
+            变量的保护机制，保护变量不受外界污染，保存某些值；
+        简单的模块化开发；
+        闭包的缺点
+            容易造成内存泄漏
+     */
+    var a = 100
+    //  function fn(){
+    //      var a=10;
+    //      var f=function(){
+    //          console.log(a)
+    //      }
+    //      return f
+    //  }
+    //  fn()()
+    //隔一秒输出一个数字；
+    //  for(var i=0;i<10;i++){
+    //      (function(n){
+    //         setTimeout(()=>{
+    //          console.log(n)
+    //      },1000*(n+1));
+    //      })(i)   
+    //  }
+    function fn(k) {
+        for (var i = 0; i < k; i++) {
+            (function (n) {
+                setTimeout(() => {
+                    console.log(n + 1)
+                }, 1000 * (n + 1));
+            })(i)
+        }
+    }
+    fn(3)
+
+    var x = 1;
+    var obj = {
+        x: 2
+    };
+    obj.fn = (function (x) {
+        this.x *= x++;
+        return function (y) {
+            x += y;
+            this.x *= ++x;
+            console.log(x);
+        }
+    })(obj.x);
+    var fn = obj.fn;
+    obj.fn(2);
+    fn(1);
+    console.log(obj.x, x);
+</script>

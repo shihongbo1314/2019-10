@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #box{
+            width: 200px;
+            height: 200px;
+            background: salmon;
+            position: relative;
+            left: 0;
+            animation: move 2s linear infinite;
+        }
+        @keyframes move{
+            /* from{
+               0%
+            }
+            to{
+              100%
+            } */
+            0%{
+                left:0
+            }
+            50%{
+                left:300px
+            }
+            100%{
+                left:0
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+
+    <input type="text" id="inp">
+</body>
+</html>
+<script>
+   let l = 0;
+   let maxL = 400;
+   function f(){
+      l++;
+      if(l>maxL){
+          l = maxL;//不让l超过最大值
+      }else{
+        requestAnimationFrame(f)
+      }
+      
+      box.style.left = l + 'px';
+   }
+   f();
+   //防抖
+   var timer = null;
+   inp.oninput = function(){
+       clearTimeout(timer);
+       timer = setTimeout(()=>{
+       let str = this.value;
+       if(!/^1[3-9]\d{9}$/.test(str)){
+           console.log('不合法')
+       }else{
+          console.log('合法')
+       }
+       });
+       
+   }
+
+   function f(){
+       let str = this.value;
+       if(!/^1[3-9]\d{9}$/.test(str)){
+           console.log('不合法')
+       }else{
+          console.log('合法')
+       }
+   }
+   inp.oninput = debounce(f2,500);
+   function debounce(fn,wait=1000){
+       var timer = null;
+       return function(){
+           clearTimeout(timer);
+           timer = setTimeout(()=>{
+               fn.apply(this,arguments)
+           },wait);
+       }
+   }
+
+   
+
+   function currying(fn,length){
+        length = length || fn.length;// 传参数的话 就是传递的参数  没有的话就是 函数的形参个数
+        return function(...arg){
+            if(arg.length >= length){
+                return fn.apply(this,arg)
+            }else{
+                return currying(fn.bind(this,...arg),length-arg.length)
+            }
+        }
+    }
+    let f3 = function (a,b,c) {
+        return a+b+c
+    }
+    let add = currying(f3)// 函数中的length 是3
+    
+    add(1)(2)(3) // 6
+    add(1,2)(3)  // 6
+    add(1)(2,3)  // 6
+    add(1,2,3)   // 6
+</script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       *{
+           margin:0;
+           padding: 0;
+           list-style: none
+       }
+       #box{
+           width: 200px;
+           height: 200px;
+           left: 0;
+           border: 1px solid salmon;
+           text-align: center;
+           line-height: 200px;
+           user-select: none;
+           position: relative;
+           transition: left 1s 0s ease-out;
+       }
+    </style>
+</head>
+<body>
+    <button id="btn">点击我</button>
+    <div id="box">
+        珠峰培训
+    </div>
+</body>
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    // getComputedStyle(元素)
+    // IE低版本使用 元素.currentStyle
+    // 监听窗口大小的改变  我们使用 window.onresize
+
+    var box = document.getElementById('box');
+    let l = 0;
+    let w = document.documentElement.clientWidth || document.body.clientWidth;//一屏的宽度
+    let boxW = box.offsetWidth;//盒子的宽度
+    let maxL = w - boxW;//可移动的最大值
+    // let timer = setInterval(()=>{
+    //     l++;
+    //     if(l >= maxL){
+    //         l = maxL;
+    //         clearInterval(timer);
+    //     }
+    //     box.style.left = l + 'px';
+    // },10)
+    //setTimeout 加递归思想实现setInterval
+    function fn(){
+        l +=5;
+        if(l >= maxL){
+            l = maxL;
+        }else{
+            // setTimeout(()=>{
+            //     fn()
+            // },10)
+            requestAnimationFrame(fn)//相当于定时器
+        }
+       box.style.left = l + 'px'
+    }
+    // fn()
+    btn.onclick = function(){
+         box.style.left = maxL + 'px';
+    }
+   
+</script>

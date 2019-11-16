@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <bottom id="btn"></bottom>
+</body>
+</html>
+<script>
+    /* 
+      种植 cookie
+      cookie 是前端用来保存某些数据的;前后端都能操作
+             一般是用来存储用信息的  5k大小左右;
+
+      H5新增的两个前端存储数据的ApI   5M(兆)带下左右
+      这两个API只能由前端操作;
+      localStorage  getitem(属性值)   setitem(属性名,属性值)  removeitem(属性名)
+      clear()// 全部删除
+      sessionStorage(会话结束之后就消失)
+
+      // 他俩的唯一区别就是前者不会自动清除 
+      // 后者会在页面关闭的时候清空
+      getCookie(属性名)  对应的属性值
+      setCookie(属性名,属性值,过期日期)
+      removeCookie(属性名)//把日期设置成过期的日期
+
+
+
+
+      cookie 1.前后端都能设置  2.大小只有5k左右3.设置cookie只能自己编写方法 4.cookie有过期时间 5.cookie会随着请求发送给后台
+      loclocalStorage  1.只能由前端设置 2.大小在5兆左右 3.有现成的方法 4.后端无法操作该属性
+      5.没有过期时间
+     */
+
+     function getCookie(key){
+         let str  = document.cookie;
+         str += ' ;';//让最后一个能满足正则
+         let reg = new RegExp(`${key}=([^ ;]+);`);
+         return  str.match(reg)[1] ? str.match(reg)[1]  : null;
+     }
+     function setCookie(key,value,date){
+         if(date){
+               document.cookie = `${key} = ${value}; expires = ${new Date(date)}`;
+         }else{
+            document.cookie = `${key} = ${value};`
+         }
+         
+     }
+
+     function removeCookie(key,domain){
+         if(domain){
+            document.cookie = `${key} = null;domain = ${domain};expires = ${new Date(1999)}`
+         }else{
+            document.cookie = `${key} = null; expires = ${new Date(1999)}`
+         }
+         return res;
+     }
+
+
+</script>
+<script>
+    btn.onclick = function(){
+        // 发送ajax给后台  让后台指点 按钮被点击了一次
+        let img = new Image();
+        img.src = '接口地址'
+    }
+</script>

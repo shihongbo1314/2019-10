@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       #box{
+           width: 200px;
+           height: 200px;
+           background:#ccc;
+           margin:50px auto;
+       }
+    </style>
+</head>
+<body>
+     <div id="box" contenteditable="true"></div>
+     <input type="text" id="inp">
+     <button id="btn">按钮</button>
+</body>
+</html>
+<script>
+    var box = document.getElementById('box');
+    //鼠标事件
+    // onclick  单击
+    // ondblclick  双击  大致 300ms之间连续点击两次
+    // onmouseenter  鼠标移入
+    // onmouseleave   鼠标移出
+    // onmouseover  鼠标滑过
+    // onmouseout   鼠标滑出
+    // onmousemove   鼠标滑动
+    // onmousewheel  鼠标的滚轮事件
+    // onmousedown   鼠标按下
+    // onmouseup     鼠标抬起
+    box.ondblclick = function(){
+        console.log('双击')
+    }
+    box.onmousemove = function(){
+        console.log(666)
+    }
+    box.onclick = function(){
+        console.log('click')
+    }
+    box.onmousedown = function(){
+        console.log('down')
+    }
+    box.onmouseup =function(){
+        console.log('up')
+    }
+    box.oncontextmenu = function(e){
+        console.log('右键')
+        e.preventDefault();//清除右键文本框
+    }
+
+    
+    // 键盘事件 
+    // onkeydown  键盘按下
+    // onkeyup   键盘抬起
+    // onkeypress  按下抬起键 有些系统键是监听不到的
+    // window  document.body  input  textarea  button  div+contenteditable
+    box.onkeydown = function(){
+        console.log('key')
+    }
+    box.onkeyup = function(){
+        console.log('keyup')
+    }
+    
+    // input
+    // onfocus  获取焦点
+    // onblur   失去焦点
+    // oninput  内容改变就触发
+    // onchange  内容发生改变 并且失去焦点的时候就会触发
+    inp.onfocus = function(){
+        console.log('获取焦点')
+    }
+    inp.onblur = function(){
+        console.log('失去焦点')
+    }
+    inp.onchange = function(){
+        console.log('change')
+    }
+    inp.oninput =function(){
+        //????
+        console.log(666)
+    }
+    
+
+
+    // 系统事件
+    // window.onsroll   页面滚动;只要能出现滚动条的元素  都可以绑定scroll事件
+    // window.onresize  窗口大小发生改变的时候
+    // window.onload  页面资源加载完成之后触发
+    window.onload = function(){
+        console.log('load')
+    }
+    $(window).ready(function(){
+        // Dom 结构加载完成后触发
+        console.log('ready')
+    })
+</script>

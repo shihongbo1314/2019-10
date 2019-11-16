@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   fetch('./data.json').then((response)=>{
+       // 不管是200 还是4xx  5xx都会走成功的回调
+       console.log(response)
+       console.log(response.json())//json函数只能执行一次
+       return response.json()
+   },()=>{
+        
+   }).then((data)=>{
+       console.log('data',data)
+   }).catch((err)=>{
+       console.log('err',err)
+   });
+
+
+   fetch('./data.json',{
+       method:'post',
+       headers:{},
+       credentials:'same-origin',//include  omit
+       body:JSON.stringify({a:123,b:234})
+   }).then((response)=>response.json()).then((data)=>{
+       console.log(data)
+   }).catch((err)=>{
+       console.log('error',err)
+   })
+</script>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">你好</button>
+</body>
+</html>
+<script>
+    // 订阅的时候把名字加入到订阅者清单
+    // 发布时  按照清单去送期刊
+
+    var ary = [];// 订阅者清单   //事件池
+
+    function on(f){
+        //订阅函数  把对应的事件放到清单里边
+        ary.push(f);
+
+    }
+
+    function fire(){
+        ary.forEach((f)=>{
+            f.call(this,...arguments);
+        })
+    }
+
+    function off(f){
+        let n = ary.indexOf(f);
+        ary.splice(n,1);
+    }
+    function f1(){
+        console.log(1,this)
+    }
+    function f2(){
+        console.log(2,this)
+    }
+    function f3(){
+        console.log(3,this)
+    }
+    on(f1);
+    on(f2);
+    on(f3);
+    off(f2);
+    btn.onclick = fire
+</script>

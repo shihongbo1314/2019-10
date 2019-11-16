@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    var arr = [
+        [1, 2, 2],
+        [3, 4, 5, 5],
+        [6, 7, 8, 9, [11, 12, [12, 13, [14]]]], 10
+    ];
+    // arr.flat(Infinity);
+
+    while (arr.some(item => Array.isArray(item))) {
+        arr = [].concat(...arr) // concat只能合并一层数组
+    }
+
+    let str = JSON.stringify(arr); //"[[1,2,2],[3,4,5,5],[6,7,8,9,[11,12,[12,13,[14]]]],10]"
+    str.replace(/\[|\]+/g, '')
+
+    arr.toString();
+
+    function flat(arr) {
+        let temp = [];
+
+        function fn(ary) {
+            ary.forEach(item => {
+                if (typeof item == 'object') {
+                    fn(item)
+                } else {
+                    temp.push(item)
+                }
+            })
+        }
+        fn(arr)
+        return temp;
+    }
+
+    // 两个数组合并成一个数组
+    var a = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2', 'D1', 'D2'],
+        b = ['A', 'B', 'C', 'D'];
+    var temp = a.map(item => item + '3')
+    console.log(b.concat(temp).sort().map(item => item.replace('3', '')))
+
+
+
+    var a = [1]; //若a 是个引用数据类型 
+              // 那么a == 1 比较的时候 会默认调用a.toString() 把toString的结果 用Number处理  然后再去比较
+        a.toString =function(){
+            return a[0]++
+        }
+    if (a == 1 && a == 2 && a == 3) {
+        console.log(1);
+    }
+
+</script>

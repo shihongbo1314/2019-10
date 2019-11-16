@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       body{
+           height: 2000px;
+           background: -webkit-linear-gradient(red,blue,yellow,green,gold)
+       }
+       #btn{
+           width: 200px;
+           height: 200px;
+           text-align: center;
+           line-height: 200px;
+           position: fixed;
+           bottom: 50px;
+           right: 50px;
+           user-select: none;
+           background-color: #8000ff;
+       }
+    </style>
+</head>
+<body>
+    <div id="btn">
+         走你
+    </div>
+</body>
+</html>
+<script>
+    var btn = document.getElementById('btn');
+    var timer = null;
+    btn.onclick = function(){
+        timer = window.setInterval(()=>{
+        if( document.documentElement.scrollTop==0){
+            clearInterval(timer);
+            
+        }
+         document.documentElement.scrollTop-=10
+        },10)
+    }
+    window.onmousewheel = function(){
+        // 监听鼠标滚轮事件
+        console.log(document.documentElement.scrollTop)
+        clearInterval(timer)
+    }
+</script>

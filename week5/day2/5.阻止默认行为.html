@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box{
+            width:100px;
+            height: 100px;
+            /* margin: 50px auto; */
+            background: red;
+            position: absolute;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <a href="http://baidu.com" id="a" target="_blank">百度</a>
+    <div id="box">哈哈</div>
+</body>
+</html>
+<script>
+    // 事件执行   先执行对应的事件 再执行默认行为;但是在滚动事件中顺序相反
+    a.onclick = function(e){
+         e = e || window.event;//事件对象 
+         // e.preventDefault();阻止浏览器的默认行为
+         var str = e.target || e.srcElement;//事件源
+         console.log(a.setAttribute('href','https://www.163.com'));
+        //  alert(66)
+      
+        return false;//(阻止浏览器的默认行为)
+    }
+    window.oncontextmenu = function(e){
+         console.log(e.pageX,e.pageY);
+        e.preventDefault();//阻止默认浏览器的右键行为
+        // alert(666);
+        box.style.display = 'block';
+        box.style.top = e.pageY + 'px';
+        box.style.left = e.pageX + 'px';
+    }
+    window.onclick = function(){
+        box.style.display = 'none'
+    }
+</script>

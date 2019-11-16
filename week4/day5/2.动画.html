@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #box {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left: 0;
+            top: 0;
+            background: aqua;
+            /* transition: all 1s; */
+            /* animation: qqq 1s linear infinite; */
+
+        }
+        @keyframes qqq {
+            0%{
+                transform: translate(0);
+            }
+            50%{
+                transform: translate(300px,300px);
+            }
+            100%{
+                transform: translate(0,0);
+            }
+        }
+        /* 
+            盒子上下居中  display: flex       align-items:center
+            position :absolute  四个方向都是0  margin:auto;
+            top:50%;      margin-top:一半的高度
+            top:50%;     transform:translateY(-50%);
+        
+         */
+    </style>
+</head>
+
+<body>
+    <botton id="btn">按钮</botton>
+    <div id="box">
+
+    </div>
+</body>
+
+</html>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    $('#box').animate({left:400,top:400},2000)
+    // js动画  固定步长  固定时间
+    var box = document.getElementById('box')
+    btn.onclick = function(){
+        // box.style.left = 400 + 'px';
+        // box.style.top = '300px';
+        // box.style.transform = 'translate(300px,300px)'
+    }
+    // 目标位置 向左移动500px
+    // var timer = null;
+    // let l = parseFloat(getComputedStyle(box).left);//获取初始值
+    // timer = setInterval(() => {
+    //     l++;
+    //     if(l >=500){
+    //         l = 500;
+    //         clearInterval(timer)
+    //     }
+    //     box.style.left = l + 'px'
+    // }, 10);
+    // let l = parseFloat(getComputedStyle(box).left);//获取初始值
+    // function fn() {
+    //     l+=10;
+    //     if (l >= 500) {
+    //         l = 500;
+    //     } else {
+    //         requestAnimationFrame(()=>{//当前页面重绘完成之后会触发回调函数
+    //             fn();
+    //         })
+    //         // setTimeout(() => {
+    //         //     fn()
+    //         // }, 10);
+    //     }
+    //    box.style.left = l +'px';
+    // }
+    // fn();
+
+
+    //固定步长  根据时间算出步长即可
+    // let l = parseFloat(getComputedStyle(box).left);//获取初始值 
+    // let speed = (500-l)/1000;// 目标位置  -  初始位置  然后再除以 时间  得出速度
+    // let time = 0;//记录运动过的时间;
+    // function fn() {
+       
+    //     time += 10;
+    //     if (time >= 1000) {
+    //        time = 1000;
+    //     } else {
+    //         // requestAnimationFrame(()=>{//当前页面重绘完成之后会触发回调函数
+    //         //     fn();
+    //         // })
+    //         setTimeout(() => {
+    //             fn()
+    //         }, 10);
+    //     }
+    //    box.style.left = l + time*speed + 'px';//初始位置 + 移动过的距离
+    // }
+    // fn();
+</script>

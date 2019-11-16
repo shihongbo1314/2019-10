@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       #lit_box{
+          width: 100px;
+          height: 100px;
+          background: saddlebrown;
+       }
+       #big_box{
+          width: 400px;
+          height: 400px;
+          border: 1px solid seagreen;
+          margin: 50px;
+       }
+    </style>
+</head>
+<body>
+    <input type="file" id="inp">
+    <div id="lit_box" draggable="true">
+
+    </div>
+    <div id="big_box">
+
+    </div>
+</body>
+</html>
+<script>
+    inp.oninput = function(e){
+        console.log(e.target.files[0])
+        let file = e.target.files[0];
+        let url = URL.createObjectURL(file);
+        big_box.innerHTML +=`<img src = ${url}>`;
+    }
+    var litBox = document.getElementById('lit_box'),
+        bigBox = document.getElementById('big_box');
+    // litBox.ondragstart = function(e){
+    //     console.log('start',e)
+    // }
+    // litBox.ondrag = function(e){
+    //     console.log('拖动中',)
+    // }
+    // litBox.ondragend = function(e){
+    //     console.log('end',e)
+    // }
+    bigBox.ondragenter = function(e){
+        console.log('拖进来')
+    }
+    bigBox.ondragover = function(e){
+        console.log('拖上来');
+        e.preventDefault();
+    }
+    bigBox.ondragleave = function(e){
+        console.log('离开')
+    }
+    bigBox.ondrop =function(e){
+        // 需要与over配合使用; 需要over阻止默认事件
+        e.preventDefault();//阻止默认打开图片
+        console.log(e.dataTransfer.files[0]);
+        let file = e.dataTransfer.files[0];
+        let url = URL.createObjectURL(file);//产生一个对应文件的路径
+        console.log(url)
+        this.innerHTML = `<img src = ${url}>`;
+        
+       /*  let _this = this;
+        let res = new FileReader();转成base64
+        let base = res.readAsDataURL(file);//转成base64
+        res.onload = function(e){
+            console.log(e.result)
+            _this.innerHTML = `<img src = ${e.target.result}>`;
+        } */
+    }
+</script>

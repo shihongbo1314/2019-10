@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+    axios.defaults.baseURL = 'https:baidu.com/qqq'
+    axios.defaults.transformRequest = function(){}
+    axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+    axios.get(url,{params:{a:12,b:14}})
+    axios.post(url,{a:12,b:23})
+    axios({
+        method:'get',
+        data:{},//post
+        params:{},//get
+    })
+    axios.defaults.baseURL = 'https://huli.com/qqq/'
+    axios.get('/user',)
+    axios.get('/https://163.com/user')
+    */
+
+    axios.defaults.baseURL = 'https://huli.com/qqq';
+    let p1 = axios.get('/user').then(response=>response)
+    let p2 = axios.get('https://163.com/user');
+    async function qqq(){
+        let res = await p1;
+        console.log(res1);
+        let res2 = await p2;
+        console.log(res2)
+    }
+</script>

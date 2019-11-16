@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+       
+    
+    */
+   let p  = new Promise(function(res,rej){
+        res(666) // 状态只能由pending变成其他状态
+        res(999)
+   })
+   p.then(function(data){
+       // 成功的回调
+       console.log(data)
+   },function(err){
+       // 失败的回调
+       console.log(err)
+   }).then(function(data) {
+       //后边的then的回调函数的执行,是看前边的then的回调函数是否成功执行
+       // 成功执行,就让后边then的成功回调执行
+       // 执行不成功,就让后边的then的失败回调执行
+       //后边的回调的参数  是由前边then的回调函数的返回值决定的
+       console.log('sss',data)
+       return new Promise(function(res,rej) {
+           rej(9999);
+       })
+   },function(err) {
+       //若前边的then的回调函数返回的是一个promise实例;则
+       // 后边的then 就是相当于给了这个新的实例
+       console.log('eee',err)
+   }).then(()=>{},()=>{
+
+   }).catch(()=>{
+       //假如前边已经捕获到了失败,则不再走catch;
+   }).finally(function(){
+       // 不会前边走了什么状态;都会执行该函数,该函数没有任何实参
+   })
+   Promise.resolve('666')//返回的是一个成功态的实例
+   Promise.resolve('000')//返回的是一个失败态的实例
+   //Promise.all([p1,p2,p3,p4]).then(()=>{},()=>{})
+   //Promise.race([p1,p2,p3,p4]).then(()=>{},()=>{})
+</script>

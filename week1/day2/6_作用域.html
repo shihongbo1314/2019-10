@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // typeScript
+    // 作用域  就是代码能起作用(能影响)的区域
+    // 全局作用域 和  私有作用域   
+    // 作用域 就是一块 栈内存
+
+    // 堆内存是用来存储 引用数据类型的
+    // 栈内存是用来存储值类型的 还有就是用来提供代码运行环境
+    /* 
+        全局作用域： 页面一打开 就会形成一个全局作用域，一个页面只有一个全局作用域
+        私有作用域： 在函数执行的时候会形成一个私有的作用域；
+        块级作用域： 指的是 判断句 循环句 的大括号抱起来的部分  es6新增  只有let和const声明的变量能识别块级作用域，对于var 不存在块级作用域这一说
+
+        全局作用域中声明的变量 我们称为全局变量
+        私有作用域中声明的变量 我们称为私有变量 ； 形参 也是私有变量；
+        块级作用域中声明的变量 我们称为私有变量 ;  只能针对let 和const声明的变量起作用
+
+        上级作用域
+            函数执行时形成的那个私有作用域，一般都会存在一个上级作用域，私有作用域的上级作用域是谁，
+            跟这个函数在哪里执行没有关系，只跟 函数在那个作用域  定义的  有关系
+        
+        私有作用域中的变量，有可能不是该私有作用域的私有变量，这时 该变量对应的值 就需要去上级作用域查找，
+        若仍不是上级作用域的私有变量， 则接着向上级查找， 直到找到 window(全局) 位置，若仍没有，则就报错 ；
+        上述查找变量的机制 我们称为 作用域链   
+
+        函数执行时  先有形参赋值  再有变量提升；
+    
+    */
+    // let a = 13;
+    
+    // // f();
+    // function f2(){
+    //     var b = 100;
+    //     function f() {
+    //         console.log(b)
+    //         a = 100;
+    //     }
+    //     // f()
+    //     return f
+    // }
+    // var f3 = f2();
+    // f3()
+
+    // var a = 10;
+    // if(1 < 2){
+    //     var a = 12;
+    //     console.log(a); // 12
+    // }
+    // console.log(a) // 12
+
+    // var b = 10;
+    // if(1 < 2){
+    //     let b = 12;
+    //     console.log(b); // 12
+    // }
+    // console.log(b) // 10
+
+    var a = 12;
+    function f(a) {
+        console.log(a);
+        a = 100;
+        var b = 200;
+    }
+    f();
+    console.log(a)
+
+    // var a = b = 10;  var a = 10; b = 10
+    // var a = 10 , b=10; var a = 10; var b = 10
+
+</script>

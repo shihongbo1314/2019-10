@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="./axios.js"></script>
+<script>
+    axios.get('./data.json').then((data)=>{
+        console.log('axios',data)
+    },(err)=>{
+        console.log('axios',err)
+    })
+
+    // fetch 默认get请求:get需要传参数的时候;需要自己拼接url
+    fetch('./data.json?a=12').then((data)=>{
+        console.log('fetch',data)
+        return data.json();//把返回的结果转成JSON对象;
+        return data.text();//把返回的结果转成字符串
+        if(/[45]\d{2}/.test(data.status)){
+            throw Error(data.statusText)
+        }
+    },(err)=>{
+        console.log('fetch',err)
+    }).then((dat)=>{
+        console.log('dat',dat)
+    }).catch((err)=>{
+        console.log('catch',err)
+    })
+
+
+
+    // fetch 的post请求?/
+    fetch('./data.json',{
+        method:'post',//控制请求方式
+        body:JSON.stringify({a:123,b:234}),
+        credentials:'same-origin',//include  omit
+        //same-origin:同源  可以携带cookie
+        //include: 所有的请求  都可以携带cookie
+        // omit:  所有的请求  都不带cookie
+        headers:{
+            //设置的请求头
+        }
+    }).then((data)=>{
+        return data.json()
+    },(err)=>{
+        //超时  或者  被打断的时候会执行;
+        console.log(err)
+    }).then((dat)=>{
+        console.log(666,dat)
+    },(err)=>{
+        console.log('catch',err)
+    })
+
+    function http(url,options={}){
+        let {
+            method='get',
+            data={},
+            headers = {},
+            credentials = 'same-origin'
+        } = options;
+        let isGet = method.toLowerCase() == 'get';
+        if(isGet){
+            // 若是get请求 则需要我们把data中的参数补成url后边的search字符串
+            let str = '';
+            for(let k in data){
+                str += `${k}=${data[k]}&`
+            }
+            str = str.replace(/&$/,''); // a=12&b=13
+            url = url.indexOf('?')==-1 ? url+'?'+str : url+'&'+str;
+        }
+        return fetch(url,{
+            method:method,
+            body:isGet ? null : JSON.stringify(data),
+            headers,
+            credentials
+        }).then((data)=>{
+            if(/[45]\d{2}/.test(data.status)){
+                throw Error(`${data.status} ${data.statusText}`)
+            }
+            return data.json();
+        })
+    }
+    http('./data.json',{
+        method:'get',
+        data:{
+            a:12,
+            b:13
+        },
+        headers:{},
+        credentials:'same-origin'
+    }).then(()=>{},()=>{})
+</script>

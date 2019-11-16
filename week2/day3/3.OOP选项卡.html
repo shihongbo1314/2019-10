@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .box {
+            width: 600px;
+            margin: 30px auto;
+
+        }
+
+        .tab_box {
+            border: 1px solid salmon;
+            display: flex;
+        }
+
+        .tab {
+            flex: 1;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tab:nth-child(2) {
+            border: 1px solid salmon;
+            border-bottom: none;
+            border-top: none;
+        }
+
+        .tab.current {
+            /*同时又 tab 和 current者两个类名的元素才会有对应的样式 */
+            background: salmon;
+            color: #fff;
+        }
+
+        .body_box {
+            width: 600px;
+            height: 300px;
+            border: 1px dashed salmon;
+            border-top: none;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .body {
+            width: 600px;
+            height: 300px;
+            text-align: center;
+            line-height: 300px;
+            font-size: 50px;
+            display: none;
+        }
+
+        .body.current {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <ul class="tab_box">
+            <li class="tab current">css</li>
+            <li class="tab">JS</li>
+            <li class="tab">HTML</li>
+        </ul>
+        <ul class="body_box">
+            <li class="body current">CSS基础</li>
+            <li class="body">JS基础</li>
+            <li class="body">HTML基础</li>
+        </ul>
+    </div>
+</body>
+
+</html>
+<script>
+    /* 
+       获取操作的元素: tab body
+       清除类名的功能
+       循环绑定点击事件
+     */
+    function Tab(idSelector) {
+        this.box = document.querySelector(idSelector);//获取到外层的盒子
+        this.tabs = this.box.getElementsByClassName('tab');
+        this.bodys = this.box.getElementsByClassName('body');
+        this.mapBind();
+    }
+    Tab.prototype.mapBind = function () {
+        // this 都是tab 的实例
+        // this.tabs 是我们要去绑定的元素
+        for (let i = 0; i < this.tabs.length; i++) {
+            this.tabs[i].onclick = () => {
+                //给每一个tab绑定点击事件;
+                this.clearClass();
+                this.tabs[i].className = 'tab current';
+                this.bodys[i].className = 'body current';
+            }
+        }
+    }
+    Tab.prototype.clearClass = function () {
+        // 清除类名  this.tabs 和 this.bodys上的current类名清除
+        for (var i = 0; i < this.tabs.length; i++) {
+            this.tabs[i].className = 'tab';
+            this.bodys[i].className = 'body';
+        }
+    }
+    var tab = new Tab('#box');
+
+
+   
+    Number.prototype.plus = function (a) {
+        return (this + a)
+    }
+    Number.prototype.minus = function (a) {
+        return (this - a)
+    }
+    let n = 10;
+    let m = n.plus(10).minus(5);//链式调用  
+    console.log(m);// =>15 (10+10-5)
+    
+    var ary = [1, 2, 3]
+    ary.sort().reverse().join('+').split('+')
+    // 链式调用  要保证 前边函数的返回结果可以调用到后边的函数;
+    Array.prototype.myPop = function () {
+        let temp = this[this.length - 1];
+        this.length--;
+        return this;
+    }
+</script>

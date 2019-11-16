@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        a {
+            color: #333;
+            text-decoration: none
+        }
+
+        a.current {
+            color: #fff;
+            background: salmon;
+        }
+
+        h2 {
+            display: none;
+            background: salmon;
+            color: #fff;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="#css">css</a>
+    <a href="#js">js</a>
+    <a href="#html">html</a>
+    <h2>css</h2>
+    <h2>js</h2>
+    <h2>html</h2>
+
+</body>
+
+</html>
+<script>
+    // cookie   loalStorage   sessionStorage
+    // DNS 域名解析
+    // URL  URN   URI
+    // 协议:// 域名:端口号/路径 ? search#hash
+    // http 超文本传输协议   默认端口号  80
+    // https 在http的基础上增加了一个  SSL 安全套阶层; 默认端口 443;
+    // ftp 上传文件的协议  默认端口是21;
+    // 强缓存  cache-control: no-cache
+    let as = document.querySelectorAll('a');
+    let h2s = document.querySelectorAll('h2');
+    window.onhashchange = function () {
+        //监听hash的更改
+        // console.log(location.hash);
+        switch (location.hash) {
+            case '#css':
+                [...as].forEach((item, index) => {
+                    if (index == 0) {
+                        item.classList.add('current')
+                        h2s[index].style.display = 'bolck'
+                    } else {
+                        item.classList.remove('current')
+                        h2s[index].style.display = 'none'
+                    }
+                })
+                break;
+            case '#js':
+                [...as].forEach((item, index) => {
+                    if (index == 1) {
+                        item.classList.add('current')
+                        h2s[index].style.display = 'bolck'
+                    } else {
+                        item.classList.remove('current')
+                        h2s[index].style.display = 'none'
+                    }
+                });
+                break;
+            case '#html':
+                [...as].forEach((item, index) => {
+                    if (index == 2) {
+                        item.classList.add('current')
+                        h2s[index].style.display = 'bolck'
+                    } else {
+                        item.classList.remove('current')
+                        h2s[index].style.display = 'none'
+                    }
+                })
+                break;
+        }
+        init();
+    }
+    function tab(n) {
+        [...as].forEach((item, index) => {
+            if (index == 2) {
+                item.classList.add('current')
+                h2s[index].style.display = 'bolck'
+            } else {
+                item.classList.remove('current')
+                h2s[index].style.display = 'none'
+            }
+        })
+    }
+    
+    function init(){
+        switch (location.hash) {
+            case '#css':
+                [...as].forEach((item, index) => {
+                    if (index == 0) {
+                        item.classList.add('current')
+                        h2s[index].style.display = 'bolck'
+                    } else {
+                        item.classList.remove('current')
+                        h2s[index].style.display = 'none'
+                    }
+                })
+                break;
+            case '#js':
+                [...as].forEach((item, index) => {
+                    if (index == 1) {
+                        item.classList.add('current')
+                        h2s[index].style.display = 'bolck'
+                    } else {
+                        item.classList.remove('current')
+                        h2s[index].style.display = 'none'
+                    }
+                });
+                break;
+            case '#html':
+                [...as].forEach((item, index) => {
+                    if (index == 2) {
+                        item.classList.add('current')
+                        h2s[index].style.display = 'bolck'
+                    } else {
+                        item.classList.remove('current')
+                        h2s[index].style.display = 'none'
+                    }
+                })
+                break;
+        }
+
+    }
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+   /* 
+       
+   
+   
+    */
+    function  factory(){
+        var obj = {name:222,age:111}
+        return obj
+    }
+    var fa1 = factory();
+    fa1.toString();
+
+
+    function Person(){
+        this.name = name;
+        this.age = age;
+    }
+    var p1 = new Person();
+    // new 比普通函数执行 多了一个开辟堆内存,把this指向这个堆内存的动作;默认返回this
+    p1.toString();
+
+    class Man{
+        constructor(){
+            this.name = 666;
+            this.age = 555;
+        }
+    }
+
+    // 原型链  属性的查找机制;当我们调用一个属性时,先在自己身上查找,没有的话就会通过__proto__
+    // 向所属类的原型上查找,没有的话 再通过原型的__proto__向上级查找,直到找到基类;
+
+    /* 
+       每一个函数(类) 都有一个天生自带的属性 prototype; 指向自己的原型对象;
+       每一个对象(实例) 都有一个天生自带的属性 __proto__指向所属类的原型对象;
+       每一个默认的原型对象都有一个 constructor属性,都指向对应的构造函数本身
+     */
+     // hasOwnProperty  在基类的原型上
+     // constructor 判断数据类型的原理; 原型重构(Person.prototype = {constructor:Person})
+     // xxx  instanceof zzz ; 从xxx到基类的原型链上 是否存在zzz的身影;不适合基本数据类型 
+</script>

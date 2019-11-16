@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script src="./jquery-3.3.1.js"></script>
+<script>
+    (function (global, factory) {
+        //兼容 node.js
+        if (false) {
+
+        } else {
+            factory(global)
+        }
+    })(typeof window !== "undefined" ? window : this, function (window, noGlobal) {
+        var
+            version = "3.3.1",
+
+            // Define a local copy of jQuery
+            jQuery = function (selector, context) {
+
+                // The jQuery object is actually just the init constructor 'enhanced'
+                // Need init if jQuery is called (just allow error to be thrown if not included)
+                return new jQuery.fn.init(selector, context);
+            };
+        jQuery.fn = jQuery.prototype = {
+
+            // The current version of jQuery being used
+            jquery: version,
+
+            constructor: jQuery,
+            toArray: function () {
+                return slice.call(this);
+            },
+
+
+            
+        }
+    });
+</script>

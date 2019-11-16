@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // var a = 12;
+    // console.log(a,b)
+
+    // console.log(a,b)
+    // var a; // 声明  只声明 不定义 默认值是undefined
+    // a = 12; // 定义
+    // var b = 13;
+
+    // console.log(qqq)
+    // console.log(f()) // 该 f 是变量提升阶段确定下来的函数  222
+    // var f = function qqq () {
+    //     console.log(111)
+    // }
+    // console.log(f()) // 该 f 是从新赋过值的函数   111
+    // function f(){
+    //     console.log(222)
+    // }
+    // console.log(f()); // 由于变量提升阶段已经定义了 f; 所以上边的function f 就不执行了； 111
+
+    /* 
+        变量提升(声)
+        在代码执行之前，JS会把代码中带var的和 带 function 的提前声明名
+            带var的是只声明不定义
+            带function的是声明又定义
+        变量提升 只提升等号左边的部分  
+        变量提升 对于条件来说，不管是否成立， 都会进行变量提升
+                在条件句或者循环句中的 function声明， 高版本浏览器是 只声明不定义的；
+    */
+    console.log(a)
+    console.log(f)
+    if(1 > 2){
+        var a = 100;
+        function f(){
+            console.log(666)
+        }
+    }
+    console.log(a)
+    console.log(f)
+
+    console.log(f2) // undefined
+    for(var i = 0 ; i < 2 ; i++){
+        function f2(){
+
+        }
+    }
+</script>

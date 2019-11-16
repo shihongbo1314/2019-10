@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script src="../day2/jquery-3.3.1.js"></script>
+<script>
+     $.ajax({
+         method:'get',
+         url:'./data.json',
+         data:{
+             a:12,
+             b:13
+         },
+         async:true,
+         cache:false,
+         headers:{
+             qqq:123,
+             aaa:234
+         },
+         success(data){
+
+         },
+         error(err){
+
+         }
+     })
+</script>

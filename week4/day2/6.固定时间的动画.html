@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            left: 0;
+            border: 1px solid salmon;
+            text-align: center;
+            line-height: 200px;
+            user-select: none;
+            position: relative;
+            /* transition: left 1s  ease-out; */
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">点击我</button>
+    <div id="box">
+        珠峰培训
+    </div>
+</body>
+</html>
+<script>
+     //让盒子一秒钟从左移动到右边
+     let box = document.getElementById('box');
+     let winW = document.documentElement.clientWidth || document.body.clientWidth;
+     let boxW = box.offsetWidth;
+     let maxL = winW - boxW;//要去移动的距离
+     let l = 0;
+     let duration = 5000;//一共要移动的时间
+     let speed = maxL / duration;//1毫秒移动的距离
+     let timer = setInterval(() => {
+         l+=20*speed;//每一次的定时器执行  都要去移动 20*speed
+         if(l >= maxL){
+             l = maxL;
+             clearInterval(timer)
+         }
+         box.style.left = l + 'px';
+     },20 );
+</script>

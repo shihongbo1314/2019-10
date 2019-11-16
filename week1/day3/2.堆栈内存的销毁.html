@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+        堆内存的销毁机制:
+         谷歌浏览器: 定时清除,每隔一段时间就会通篇销毁一次,把js中没有被用到的地址 销毁
+         火狐浏览器: 计数清除,根据当前地址的引用个数来决定这个堆内存是否要被销毁
+        栈内存
+          全局作用域的销毁  只有当页面关闭的时候才会销毁;
+          私有作用域的销毁  只要函数的返回值是一个引用数据类型,那么这个作用域就不会被销毁
+
+        栈溢出  内存泄露  栈内存不够用; 
+    
+    
+    */
+   var a = [1,2,3,4]
+   a = 12;
+
+
+
+   function f(){
+       var a = 100;
+       btn.onclick = function(){
+            console.log(a)
+       }
+   }
+   f()
+</script>

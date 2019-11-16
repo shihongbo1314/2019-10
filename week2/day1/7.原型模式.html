@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    /* 
+       原型模式:在构造函数的基础上加了个原型(prototype)的概念
+    
+    */
+    function Person(name= 'zf',age = 10,sex = 1){
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+    Person.prototype.eat = function(){
+        console.log('吃')
+    }
+    Person.prototype.play = function(){
+        console.log('玩')
+    }
+    Person.prototype.qqq = 123;
+    var p1 = new Person();
+    var p2 = new Person();
+    console.log(p1,p2)
+
+    class FN3{
+        constructor(name,age){
+            this.name = name;
+            this.age  = age;
+        }
+        eat(){
+
+        }
+        play(){
+
+        }
+    }
+    // FN 只能通过 new 的方式执行;
+    var f = new FN();
+    console.log(f);
+</script>

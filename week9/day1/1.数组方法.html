@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+     //push    pop    unshift   shift   reverse    splice   sort(改变原有数组)
+     // forEach  map  filter(过滤)  some  every  find  reduce   flat
+     var ary = [100,200,300,400,500,600,]
+     var arr = ary.filter((item)=>{
+        return item > 3
+     });
+     // some  只要有一个回调函数返回值是true  结果就是true,后边的回调就不再执行
+     // every  只要有一个回调函数返回值是false 结果就是false 后边回调就不再执行了
+    let res =  ary.reduce(function(prev,next){
+         // prev 若第一次执行回调函数时 prev是reduce的第二个参数,若不存在第二个参数,prev就是数组的第一项 ,  再后边的回调  prev就是上一个回调的返回值,next就是当前项
+         // reduce 的执行结果,就是最后一个回调函数的返回值
+         console.log(arguments)
+         return 666
+     });
+    ary = [{a:10},{a:20},{a:30},{a:40}]
+    let t = ary.reduce((prev,next)=>prev+next.a,0);
+
+    let res2 = ary.find((item,index)=>{
+        //回调函数返回true  则就把当前的这一项返回res2,后边的回调函数不再执行
+        //返回都是false 则给res2 一个undefined
+        console.log(6)
+        return item.a == 30
+    })
+    // 以上方法 都属于  声明式的写法  别人规定好的 你直接用 forEach
+    //                 编程式的写法                      for循环
+</script>

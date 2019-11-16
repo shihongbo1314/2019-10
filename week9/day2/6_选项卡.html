@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        header {
+            width: 400px;
+            height: 50px;
+            line-height: 50px;
+            display: flex;
+        }
+
+        header span {
+            flex: 1;
+            border: 1px salmon solid;
+            text-align: center;
+        }
+
+        main div {
+            width: 400px;
+            height: 200px;
+            line-height: 200px;
+            background: salmon;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{name}}</h1>
+        <header>
+            <span v-for="(item,index) in ary" @click="change(index)">
+                {{item}}
+            </span>
+        </header>
+        <main>
+            <!-- <div v-for="(item,index) in body" v-show="index === qqq">
+                {{item}}
+            </div> -->
+            <div>
+                {{body[qqq]}}
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            name: "珠峰",
+            ary: ['JS', 'CSS', 'HTML', 'VUE'],
+            body: ['JS学的好', 'CSS学的好', 'HTML学的好', 'VUE学的好'],
+            qqq: 0
+        },
+        methods: {
+            change(n) {
+                console.log(n);
+                this.qqq = n;
+            }
+        }
+    })
+</script>

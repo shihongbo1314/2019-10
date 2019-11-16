@@ -1,0 +1,82 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.md{
+    width: 1200px;
+    margin: auto;
+}
+.md header{
+    border: 1px solid #ccc;
+    height: 50px;
+    line-height: 50px;
+}
+.md header span{
+    padding: 0 20px;
+    cursor: pointer;
+    user-select: none;/* 让用户选不中 */
+    
+}
+img{
+    height: 100%;
+}
+.md header span:first-child{
+    cursor:default;
+}
+#box{
+    overflow: hidden;
+    margin-top:15px;
+}
+#box li{
+    float: left;
+    width: 200px;
+    height: 340px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    position: relative;
+}
+#box li:nth-child(5){
+    margin-right: 0;
+}
+#box li:hover{
+    border-color:red;
+}
+#box li .imgBox{
+     height: 180px;
+     width: 180px;
+     margin:30px auto 15px;
+}
+#box li .til{
+    color:#ffffff;
+    text-align: center;
+    font-size: 14px;
+}
+#box li .desc{
+    text-align: center;
+    font-size: 15px;
+}
+#box li .price{
+    text-align: center;
+    font-size: 15px;
+    color: red;
+}
+#box li .botBox{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+}
+#box li .botBox div{
+    flex: 1;
+    border: 1px solid #ccc;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+}
+#box li .botBox div:first-child{
+    border-right:1px solid #ccc;
+}

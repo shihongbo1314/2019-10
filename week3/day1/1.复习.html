@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    /* 
+       function声明类
+       函数的三种角色: 普通函数  构造函数  普通对象
+       Array.form();//类数组换数组
+
+       class类名{
+           constructor(形参){
+               函数体
+           }
+           say(){}
+           static fn(){}//类名.fn = function(){}
+       }
+    
+    
+     */
+    //es6继承
+    class Person {
+        constructor(name) {
+            this.name = name
+        }
+        say() {
+            console.log(`my name is ${this.name}`)
+        }
+        static fn() {
+            console.log('静态属性')
+        }
+        static fn2() {
+            console.log('静态方法2')
+        }
+    }
+    var p = new Person('珠峰');
+    class Child extends Person {
+        constructor(name) {
+            super();// 
+            this.name = name;
+        }
+    }
+    var c = new Child('小明')
+    // es5 继承
+    function Man() { }
+
+    function boy() {
+        Man.call(this)
+    }
+    boy.prototype = Object.create(Man.prototype)
+
+    //在数组的原型上 补一个方法del(n) 可以随机删除n项; 返回值是 删除的项组成的是新数组
+   
+    Array.prototype.del = function (n) {
+        if (n > this.length) {
+            throw new Error9('参数错误')
+        }
+        var ary = [];
+        for (var i = 0; i < n; i++) {
+            var m = Math.round(Math.random() * (this.length - 1));// 0 this.length-1 之间的随机数
+            ary = ary.concat(this.splice(m, 1))
+        }
+        return ary;
+    }
+    var ary = [1, 2, 3, 4, 5, 6]
+    ary.del(2);//随机删除 两 项;
+    // 在字符串的原型上 补一个方法 url.getParam() 该方法 可以获取 url中的参数部分及 hash 部分
+    
+    String.prototype.getParam = function () {
+        var str2 = str.split('?')[1];
+        var str1 = str2.split('#')[0];
+        var ary = str1.split('&')
+        console.log(ary);
+        // var ary1 = ary.split('&');
+        let obj = {};
+        ary.forEach((v, i) => {
+            var arr = v.split('=');
+            obj[arr[0]] = arr[1]
+        })
+        obj.hash = this.split('#')[1];
+        return obj
+    }
+    var obj1 = str.getParam();
+    console.log(obj1)
+    var str = 'https://baidu.com?a=12&bb=13&_c=14#hello';
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="nameBtn">姓名</button>
+    <button id="ageBtn">年龄</button>
+    <ul id="box">
+        <li>
+            <strong>姓名:小明</strong>;
+            <strong>年龄:10</strong>
+        </li>
+    </ul>
+</body>
+</html>
+<script>
+    var ary = [
+        {name:'小明',age:10},
+        {name:'小话',age:12},
+        {name:'小李',age:15},
+        {name:'小王',age:11},
+        {name:'小红',age:17},
+    ];
+   
+    // console.log(str);
+    
+    // 渲染数组
+    function render(){
+         var str = '';
+    ary.forEach(item=>{
+        let {name,age} = item; // 对象的结构赋值
+        str += ` <li>
+                <strong>姓名:${name}</strong>;
+                <strong>年龄:${age}</strong>
+                </li>`
+    });
+            box.innerHTML = str;
+    }
+    
+    render();
+
+    // 实现点击排序
+    // 思路 点击 先排序数组; 然后重新渲染数组
+    // var flag = 1;
+    nameBtn.flag = ageBtn.flag = 1;
+    nameBtn.onclick = function(){
+        this.flag*=-1;
+         ary.sort((a,b)=>{
+             return a.name.localeCompare(b.name)*this.flag
+         })
+         render();
+    }
+    ageBtn.onclick = function(){
+        this.flag*=-1;
+         ary.sort((a,b)=>{
+             return (a.age - b.age)*this.flag;
+         })
+         render();
+    }
+     
+</script> 
+<script>
+     /* 
+        对象的解构赋值:
+        var obj = {name:234,age:345};
+        var {age} = obj;
+        var {age,name} = obj;
+        age 就是一个变量 对应的值是 对象中 age 对应的属性值;
+    
+        var {aaa,ddd} = {aaa:123,bbb:223,ccc:546}
+    
+    
+     */
+</script>
